@@ -14,7 +14,7 @@ import { ArrowRight, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { gql, ApolloClient, InMemoryCache } from "@apollo/client";
+import { gql } from "@apollo/client";
 import client from '@/lib/contentfulClient'
 
 // Define types for the banner data
@@ -35,15 +35,6 @@ interface BannerData {
   };
   link: string;
 }
-
-// Apollo Client setup
-// const client = new ApolloClient({
-//   uri: `https://graphql.contentful.com/content/v1/spaces/suzzj95a076o`,
-//   headers: {
-//     Authorization: `Bearer 9LmoiBPgB5Y80mVsOp19aCqtAcEaV5GrHNzQEQKnaKw`,
-//   },
-//   cache: new InMemoryCache(),
-// });
 
 // GraphQL query corrected to match content model field names
 const GET_BANNER_DATA = gql`
