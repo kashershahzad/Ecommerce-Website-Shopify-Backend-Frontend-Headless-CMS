@@ -1,0 +1,115 @@
+{
+    "name": "Bannerdata",
+    "description": "Hero section",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "title",
+        "type": "Symbol",
+        "localized": false,
+        "required": true,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "decscription",
+        "name": "decscription",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "button",
+        "name": "button",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "discountText",
+        "name": "discountText",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "images",
+        "name": " images",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Asset"
+      },
+      {
+        "id": "link",
+        "name": "link",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      }
+    ],
+    "sys": {
+      "space": {
+        "sys": {
+          "type": "Link",
+          "linkType": "Space",
+          "id": "suzzj95a076o"
+        }
+      },
+      "id": "bannerdata",
+      "type": "ContentType",
+      "createdAt": "2025-03-06T11:43:40.571Z",
+      "updatedAt": "2025-03-06T11:43:41.141Z",
+      "environment": {
+        "sys": {
+          "id": "master",
+          "type": "Link",
+          "linkType": "Environment"
+        }
+      },
+      "publishedVersion": 1,
+      "publishedAt": "2025-03-06T11:43:41.141Z",
+      "firstPublishedAt": "2025-03-06T11:43:41.141Z",
+      "createdBy": {
+        "sys": {
+          "type": "Link",
+          "linkType": "User",
+          "id": "37uJwBq7mWtIxYiU5KJgkM"
+        }
+      },
+      "updatedBy": {
+        "sys": {
+          "type": "Link",
+          "linkType": "User",
+          "id": "37uJwBq7mWtIxYiU5KJgkM"
+        }
+      },
+      "publishedCounter": 1,
+      "version": 2,
+      "publishedBy": {
+        "sys": {
+          "type": "Link",
+          "linkType": "User",
+          "id": "37uJwBq7mWtIxYiU5KJgkM"
+        }
+      },
+      "urn": "crn:contentful:::content:spaces/suzzj95a076o/environments/master/content_types/bannerdata"
+    }
+  }

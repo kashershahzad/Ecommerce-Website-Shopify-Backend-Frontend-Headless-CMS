@@ -12,12 +12,78 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { ArrowRight, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
-import { bannerData } from "@/data/banner/bannerData";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { gql, ApolloClient, InMemoryCache } from "@apollo/client";
+import client from '@/lib/contentfulClient'
 
-const HeroBannerOne = () => {
-  // get banners data from server then display here
+// Define types for the banner data
+interface BannerImage {
+  url: string;
+}
+
+interface BannerData {
+  sys: {
+    id: string;
+  };
+  title: string;
+  decscription: string; // Fixed typo in field name
+  button: string;
+  discountText: string;
+  images: {
+    url: string;
+  };
+  link: string;
+}
+
+// Apollo Client setup
+// const client = new ApolloClient({
+//   uri: `https://graphql.contentful.com/content/v1/spaces/suzzj95a076o`,
+//   headers: {
+//     Authorization: `Bearer 9LmoiBPgB5Y80mVsOp19aCqtAcEaV5GrHNzQEQKnaKw`,
+//   },
+//   cache: new InMemoryCache(),
+// });
+
+// GraphQL query corrected to match content model field names
+const GET_BANNER_DATA = gql`
+  query GetBannerData {
+    bannerdataCollection {
+      items {
+        sys {
+          id
+        }
+        title
+        decscription
+        button
+        discountText
+        images {
+          url
+        }
+        link
+      }
+    }
+  }
+`;
+
+// Fetch data on the client side
+const fetchBannerData = async (): Promise<BannerData[]> => {
+  const { data } = await client.query<{ bannerdataCollection: { items: BannerData[] } }>({
+    query: GET_BANNER_DATA,
+  });
+  return data.bannerdataCollection.items;
+};
+
+const HeroBannerOne: React.FC = () => {
+  const [bannerData, setBannerData] = React.useState<BannerData[]>([]);
+
+  React.useEffect(() => {
+    fetchBannerData().then((data) => setBannerData(data));
+  }, []);
+
+  if (!bannerData.length) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 ">
@@ -32,7 +98,7 @@ const HeroBannerOne = () => {
           <CarouselContent className="space-x-2 ml-1">
             {bannerData.map((data) => (
               <CarouselItem
-                key={data.title}
+                key={data.sys.id}
                 className={`relative rounded-xl flex flex-col-reverse md:flex-row items-center justify-evenly p-2`}
               >
                 <motion.div
@@ -53,7 +119,7 @@ const HeroBannerOne = () => {
                     {data.title}
                   </h2>
                   <p className="max-w-96 mx-auto leading-6">
-                    {data.description}
+                    {data.decscription}
                   </p>
                   <Link href={data.link} className="block ">
                     <Button
@@ -73,7 +139,7 @@ const HeroBannerOne = () => {
                   {/* main product image */}
                   <Image
                     className="bg-transparent rotate-6 relative z-50 object-contain"
-                    src={data.images[0]}
+                    src={data.images.url}
                     width={500}
                     height={500}
                     alt="banner image"
