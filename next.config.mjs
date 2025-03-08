@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['images.ctfassets.net'],
+      domains: [
+        'cdn.shopify.com',
+        'images.ctfassets.net'
+      ],
       },
 };
 

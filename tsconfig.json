@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/hero/HeroBannerOne.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/hero/HeroBannerOne.tsx", "lib/shopify.js", "components/products/ProductsCollectionOne.jsx"],
   "exclude": ["node_modules"]
 }

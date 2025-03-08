@@ -1,10 +1,10 @@
 "use client";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
-import { productsData } from "@/data/products/productsData";
 import React, { useEffect, useState } from "react";
 import SingleProductCartView from "../product/SingleProductCartView";
 import client from '@/lib/contentfulClient';
 import { gql } from "@apollo/client";
+import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 
 interface featuretitle {
   sys: {
@@ -31,7 +31,10 @@ const fetchtitle = async (): Promise<featuretitle[]> => {
 const ProductsCollectionOne = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [titleData, setTitleData] = useState<featuretitle[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  
+  // Use the Shopify products hook
+  const { products, loading, error: shopifyError } = useShopifyProducts();
 
   React.useEffect(() => {
     fetchtitle()
@@ -40,7 +43,7 @@ const ProductsCollectionOne = () => {
       })
       .catch((error) => {
         console.error(error);
-        // setError("Failed to fetch title data");
+        setError("Failed to fetch title data");
       });
   }, []);
 
@@ -48,14 +51,16 @@ const ProductsCollectionOne = () => {
     setIsMounted(true);
   }, []);
 
-  const data = productsData;
-
   if (!isMounted) {
     return null;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (error || shopifyError) {
+    return <div>{error || shopifyError}</div>;
+  }
+
+  if (loading) {
+    return <div className="text-center py-10">Loading products...</div>;
   }
 
   return (
@@ -63,30 +68,12 @@ const ProductsCollectionOne = () => {
       <Tabs defaultValue="top-rated" className="w-full space-y-8 mx-0">
         <div className="flex items-center flex-col md:flex-row justify-between gap-2 flex-wrap w-full">
           <h2 className="text-3xl md:text-5xl font-semibold border-l-4 border-l-rose-500 p-2">
-            {titleData[0]?.title}
+            {titleData[0]?.title || "Featured Products"}
           </h2>
         </div>
         <TabsContent value="top-rated" className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-            {data?.slice(0, 8)?.map((product) => {
-              return (
-                <SingleProductCartView key={product.id} product={product} />
-              );
-            })}
-          </div>
-        </TabsContent>
-        <TabsContent value="most-popular">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {data?.slice(0, 8)?.map((product) => {
-              return (
-                <SingleProductCartView key={product.id} product={product} />
-              );
-            })}
-          </div>
-        </TabsContent>
-        <TabsContent value="new-items">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {data?.slice(0, 8)?.map((product) => {
+            {products?.slice(0, 8)?.map((product) => {
               return (
                 <SingleProductCartView key={product.id} product={product} />
               );
