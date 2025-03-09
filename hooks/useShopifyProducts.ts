@@ -13,14 +13,15 @@ export const useShopifyProducts = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const { data } = await Shopifyclient.query({
-          query: GET_PRODUCTS,
-        });
+        
+        // Using the Storefront API client
+        const { data } = await Shopifyclient.request(GET_PRODUCTS);
 
         // Transform Shopify product data to match your Product type
         const transformedProducts: Product[] = data.products.edges.map((edge: any, index: number) => {
           const product = edge.node;
-          const imageUrl = product.images.edges[0]?.node.src || "/placeholder-image.jpg";
+          // Note the change from src to url for images in the Storefront API
+          const imageUrl = product.images.edges[0]?.node.url || "/placeholder-image.jpg";
           const price = parseFloat(product.variants.edges[0]?.node.price.amount) || 0;
           
           // Calculate a dummy discount (you might want to get this from Shopify compare-at price)

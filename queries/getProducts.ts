@@ -1,7 +1,5 @@
-// lib/getproducts.js
-import { gql } from '@apollo/client';
-
-export const GET_PRODUCTS = gql`
+// lib/getproducts.ts
+export const GET_PRODUCTS = `
   query GetProducts {
     products(first: 10) {
       edges {
@@ -14,7 +12,7 @@ export const GET_PRODUCTS = gql`
           images(first: 5) {
             edges {
               node {
-                src
+                url
                 altText
               }
             }
