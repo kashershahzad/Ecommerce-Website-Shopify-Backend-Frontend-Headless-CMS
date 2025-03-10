@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { productsData } from "@/data/products/productsData";
 import Link from "next/link";
-// import { useShopifyCollection } from "@/hooks/useShopifyCollections";
+
 const CategoriesCollection = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
