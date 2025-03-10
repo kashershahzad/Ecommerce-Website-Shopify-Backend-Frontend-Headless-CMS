@@ -23,7 +23,7 @@ const ShopPageOne = ({ searchParams }: ShopPageOneProps) => {
           <FilterProducts />
         </Suspense>
       </div>
-      <ShopPageContainer gridColumn={3} searchParams={searchParams} />
+      <ShopPageContainer  gridColumn={3} searchParams={searchParams} />
     </section>
   );
 };

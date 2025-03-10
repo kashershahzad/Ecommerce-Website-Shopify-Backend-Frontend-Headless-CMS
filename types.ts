@@ -16,6 +16,15 @@ export type Product = {
   images: string[];
 };
 
+export interface Collection {
+  id: string;
+  title: string;
+  handle: string;
+  description: string | null;
+  imageUrl: string | null;
+  productsCount: number;
+}
+
 export type Review = {
   author: string;
   image: string;

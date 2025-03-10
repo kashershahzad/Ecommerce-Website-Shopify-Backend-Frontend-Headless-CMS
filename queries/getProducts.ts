@@ -1,4 +1,4 @@
-// lib/getproducts.ts
+// queries/getproducts.ts
 export const GET_PRODUCTS = `
   query GetProducts {
     products(first: 10) {
@@ -47,3 +47,4 @@ export const GET_PRODUCTS = `
     }
   }
 `;
+

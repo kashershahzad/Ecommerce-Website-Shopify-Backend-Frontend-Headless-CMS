@@ -20,8 +20,8 @@ const HomePageOne = () => {
       <BenefitsSection textCenter={false} />
       <BannerOne />
       <TestimonialsSection textCenter={false} />
-      <LatestBlogPosts twoColunmHeader={true} />
-      <NewsLetterTwo />
+      {/* <LatestBlogPosts twoColunmHeader={true} />
+      <NewsLetterTwo /> */}
     </section>
   );
 };

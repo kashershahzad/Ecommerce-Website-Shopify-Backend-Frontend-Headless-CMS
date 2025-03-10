@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { useMobileSearchModal } from "@/store/mobileSearchStore";
 import Loader from "../others/Loader";
 import DropdownMenuComponent from "../others/DropdownMenu";
+import CatagoriesDropdown from '../others/CatagoriesDropdown'
 
 const HeaderOne = () => {
   const pathname = usePathname();
@@ -50,7 +51,8 @@ const HeaderOne = () => {
               {link.label}
             </Link>
           ))}
-          <DropdownMenuComponent />
+          {/* <DropdownMenuComponent /> */}
+          <CatagoriesDropdown />
         </ul>
         <div className="flex items-center gap-6 ">
           {/* mobile search option */}
