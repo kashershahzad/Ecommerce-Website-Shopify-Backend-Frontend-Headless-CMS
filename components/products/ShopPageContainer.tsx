@@ -135,9 +135,10 @@ const ShopPageContainer = ({
           currentPage={currentPage}
         />
         <p>Sorry no products found with your filter selection</p>
-        {/* <p className="text-base text-gray-600">
-          The category may not exist or the filters applied don"t match any products.
-        </p> */}
+        // eslint-disable-next-line react/no-unescaped-entities
+        <p className="text-base text-gray-600">
+          The category may not exist or the filters applied don't match any products.
+        </p>
       </div>
     );
   }
