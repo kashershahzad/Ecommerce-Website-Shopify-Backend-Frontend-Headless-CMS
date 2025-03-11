@@ -1,5 +1,6 @@
 import LatestBlogPosts from "@/components/blog/LatestBlogPosts";
 import ShopPageContainer from "@/components/products/ShopPageContainer";
+import useShopifyCollections from "@/hooks/useShopifyCollections";
 import Link from "next/link";
 
 import React from "react";
@@ -17,6 +18,7 @@ interface ShopPageTwoProps {
 }
 
 const ShopPageTwo = ({ searchParams }: ShopPageTwoProps) => {
+  const { collection, products, loading, error } = useShopifyCollections(searchParams.category);
   return (
     <section>
       <div className="p-10 w-full bg-gray-300 dark:bg-gray-800 text-4xl flex items-center justify-center gap-2">
@@ -26,7 +28,7 @@ const ShopPageTwo = ({ searchParams }: ShopPageTwoProps) => {
       </div>
 
       <div className="p-4 lg:px-16">
-        <ShopPageContainer gridColumn={4} searchParams={searchParams} />
+        <ShopPageContainer products={products}  gridColumn={4} searchParams={searchParams} />
       </div>
       <LatestBlogPosts twoColunmHeader={true} />
     </section>
