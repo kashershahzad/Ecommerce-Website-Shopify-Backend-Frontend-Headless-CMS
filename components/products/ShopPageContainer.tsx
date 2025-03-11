@@ -58,7 +58,7 @@ const ShopPageContainer = ({
     // Filter by color if product has color property
     if (searchParams.color && filteredProducts.some(p => p.color)) {
       filteredProducts = filteredProducts.filter((product) =>
-        Array.isArray(product.color) 
+        Array.isArray(product.color)
           ? product.color.some(c => c.toLowerCase() === searchParams.color.toLowerCase())
           : false
       );
@@ -70,8 +70,8 @@ const ShopPageContainer = ({
       const maxPrice = parseFloat(searchParams.max);
       filteredProducts = filteredProducts.filter(
         (product) => {
-          const productPrice = typeof product.price === 'string' 
-            ? parseFloat(product.price) 
+          const productPrice = typeof product.price === 'string'
+            ? parseFloat(product.price)
             : product.price;
           return productPrice >= minPrice && productPrice <= maxPrice;
         }
@@ -87,7 +87,7 @@ const ShopPageContainer = ({
     setLoading(true);
     console.log("Search params changed:", searchParams);
     console.log("Products available:", products.length);
-    
+
     if (products.length > 0) {
       const filteredProducts = filterData();
       setFilteredData(filteredProducts);
@@ -95,7 +95,7 @@ const ShopPageContainer = ({
     } else {
       setFilteredData([]);
     }
-    
+
     setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, products]);
@@ -135,7 +135,9 @@ const ShopPageContainer = ({
           currentPage={currentPage}
         />
         <p>Sorry no products found with your filter selection</p>
-        <p className="text-base text-gray-600">The category may not exist or the filters applied don't match any products.</p>
+        <p className="text-base text-gray-600">
+          The category may not exist or the filters applied don"t match any products.
+        </p>
       </div>
     );
   }
@@ -162,9 +164,8 @@ const ShopPageContainer = ({
 
       {listView === false && (
         <div
-          className={`max-w-screen-xl mx-auto overflow-hidden py-4 md:py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${
-            gridColumn || 3
-          } overflow-hidden gap-4 lg:gap-6`}
+          className={`max-w-screen-xl mx-auto overflow-hidden py-4 md:py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${gridColumn || 3
+            } overflow-hidden gap-4 lg:gap-6`}
         >
           {paginatedData.map((product) => (
             <SingleProductCartView key={product.id} product={product} />
