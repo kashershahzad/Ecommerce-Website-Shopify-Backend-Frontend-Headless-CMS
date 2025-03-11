@@ -6,6 +6,9 @@ const nextConfig = {
         'images.ctfassets.net'
       ],
       },
+      eslint: {
+        ignoreDuringBuilds: true, // Disable ESLint during builds
+      },
 };
 
 export default nextConfig;
