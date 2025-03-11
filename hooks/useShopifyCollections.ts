@@ -93,24 +93,28 @@ const useShopifyCollections = (category?: string) => {
         return [];
       }
 
-      return data.collection.products.edges.map((edge: any) => {
+      return data.collection.products.edges.map((edge: any ,  index: number) => {
         const product = edge.node;
-        const productImage = product.images?.edges[0]?.node.url || null;
+        const imageUrl = product.images.edges[0]?.node.url || "/placeholder-image.jpg";
         const priceAmount = product.variants?.edges[0]?.node.price?.amount || '0';
+        const availableForSale = product.variants?.edges[0]?.node.availableForSale || false;
         
         return {
           id: product.id,
           title: product.title,
           handle: product.handle,
           description: product.description,
-          imageUrl: productImage,
-          image: productImage, 
+          images: [imageUrl],
           price: parseFloat(priceAmount),
           currencyCode: product.variants?.edges[0]?.node.price?.currencyCode || 'USD',
           category: data.collection.title || '',
           brand: product.vendor || '',
           color: [],
           size: [],
+          stockItems: availableForSale ? 10 : 0, // Assuming 10 items in stock if available
+          discount: 10, // Assuming a default discount of 10%
+          rating: 4.5, // Assuming a default rating
+          reviews: [], // Assuming no reviews initially
         };
       });
     } catch (err) {

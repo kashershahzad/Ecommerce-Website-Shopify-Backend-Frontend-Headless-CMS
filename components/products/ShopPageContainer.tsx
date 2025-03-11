@@ -157,9 +157,14 @@ const ShopPageContainer = ({
       {/* showing product list or cart view based on state */}
       {listView === true && (
         <div className="max-w-screen-xl mx-auto overflow-hidden py-4 md:py-8 gap-4 lg:gap-6">
-          {paginatedData.map((product) => (
-            <SingleProductListView key={product.id} product={product} />
-          ))}
+          {paginatedData.map((product) => {
+            // Log each product to the console
+            console.log("Products in shoppage:", product);
+
+            return (
+              <SingleProductListView key={product.id} product={product} />
+            );
+          })}
         </div>
       )}
 

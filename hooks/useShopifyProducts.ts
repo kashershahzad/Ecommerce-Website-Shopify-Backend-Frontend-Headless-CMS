@@ -27,7 +27,7 @@ export const useShopifyProducts = (productId?: string) => {
          
           return {
             id: index + 1,
-            name: product.title,
+            title: product.title,
             category: "Shopify",
             description: product.description,
             aboutItem: [product.description.substring(0, 100)],

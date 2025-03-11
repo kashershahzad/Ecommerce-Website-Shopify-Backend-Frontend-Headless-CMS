@@ -54,7 +54,7 @@ const ProductOptions = ({ product }: { product: Product }) => {
       onClick={(e) => e.preventDefault()}
     >
       <TooltipProvider delayDuration={0}>
-        <Tooltip>
+        {/* <Tooltip>
           <TooltipTrigger>
             <div
               onClick={handleAddToWishList}
@@ -66,7 +66,7 @@ const ProductOptions = ({ product }: { product: Product }) => {
           <TooltipContent>
             <p>Add To Wishlist</p>
           </TooltipContent>
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip>
           <TooltipTrigger>
             <div

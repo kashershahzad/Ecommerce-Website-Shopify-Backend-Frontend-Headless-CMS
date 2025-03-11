@@ -11,6 +11,7 @@ export const GET_PRODUCTS_BY_COLLECTION = `
             title
             handle
             description
+            vendor
             images(first: 1) {
               edges {
                 node {
@@ -26,6 +27,7 @@ export const GET_PRODUCTS_BY_COLLECTION = `
                     amount
                     currencyCode
                   }
+                  availableForSale
                 }
               }
             }

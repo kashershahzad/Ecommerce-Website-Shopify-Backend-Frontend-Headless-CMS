@@ -16,6 +16,7 @@ interface ProductIdPageProps {
 const ProductIdPage = ({ params }: ProductIdPageProps) => {
   // Use your Shopify hook to get the product data
   const { product, loading, error } = useShopifyProducts(params.productId);
+  console.log("Products loaded: ", product);
   
   // You might also need to fetch related products from Shopify
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
