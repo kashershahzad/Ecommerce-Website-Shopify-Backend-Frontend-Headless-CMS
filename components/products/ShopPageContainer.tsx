@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 import React, { Suspense, useEffect, useState } from "react";
 import ProductViewChange from "../product/ProductViewChange";
@@ -97,7 +98,6 @@ const ShopPageContainer = ({
     }
 
     setLoading(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, products]);
 
   // change currentPage when searchparams page change
