@@ -7,6 +7,7 @@ import ProductOptions from "./ProductOptions";
 import { Product } from "@/types";
 import { calculateDiscount } from "@/lib/calculateDiscount";
 import { useRouter } from "next/navigation";
+import { title } from "process";
 
 const SingleProductCartView = ({ product }: { product: Product }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -50,7 +51,7 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
             </p>
           ) : (
             <p className="py-1 px-4 text-sm font-bold rounded-sm bg-rose-500 text-white absolute top-2 right-2">
-              {discount}% off
+              {product.discount}% off
             </p>
           )}
         </div>
@@ -66,11 +67,12 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
           }}
           className="text-sm text-sky-500 font-light -mb-1 hover:opacity-60 "
         >
+          {" "}
           {category}
         </p>
         <h3 className="text-xl font-fold capitalize hover:text-green-500">
-          {name.slice(0, 45)}
-          {name.length > 45 && "..."}
+          {title.slice(0, 45)}
+          {title.length > 45 && "..."}
         </h3>
         {/* <RatingReview rating={rating} review={reviews.length} /> */}
         <div className="text-lg font-bold space-x-3 ">
