@@ -1,21 +1,16 @@
-// queries/getSingleCollection.ts
-export const GET_COLLECTION_BY_HANDLE = `
-  query GetCollectionByHandle($handle: String!) {
-    collectionByHandle(handle: $handle) {
+// queries/getProductsByCollection.ts
+export const GET_PRODUCTS_BY_COLLECTION = `
+  query GetProductsByCollection($collectionId: ID!) {
+    collection(id: $collectionId) {
       id
       title
-      description
-      image {
-        url
-        altText
-      }
-      products(first: 20) {
+      products(first: 10) {
         edges {
           node {
             id
             title
-            description
             handle
+            description
             images(first: 1) {
               edges {
                 node {
@@ -27,17 +22,10 @@ export const GET_COLLECTION_BY_HANDLE = `
             variants(first: 1) {
               edges {
                 node {
-                  id
-                  title
                   price {
                     amount
                     currencyCode
                   }
-                  compareAtPrice {
-                    amount
-                    currencyCode
-                  }
-                  availableForSale
                 }
               }
             }

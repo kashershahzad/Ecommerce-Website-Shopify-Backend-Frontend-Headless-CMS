@@ -11,7 +11,6 @@ function ShopPage({
   return (
     <div>
       <ShopPageOne searchParams={searchParams} />
-      {/* <ShopPageTwo searchParams={searchParams}/> */}
     </div>
   );
 }

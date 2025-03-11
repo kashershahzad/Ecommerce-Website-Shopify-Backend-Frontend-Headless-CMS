@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
-import { useShopifyCollections } from '@/hooks/useShopifyCollections';
+import useShopifyCollections from '@/hooks/useShopifyCollections';
 
 const DropdownMenuComponent = () => {
   const { collections, loading, error } = useShopifyCollections();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+
+  console.log("Collections:", collections);
 
   return (
     <div>
@@ -24,13 +26,18 @@ const DropdownMenuComponent = () => {
           Categories <ChevronDown />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="p-6 space-y-2">
-          {collections.map((collection) => (
-            <DropdownMenuItem key={collection.id}>
-              <Link href={`/shop/${collection.handle}`}>
-                {collection.title}
-              </Link>
-            </DropdownMenuItem>
-          ))}
+          {collections.map((collection) => {
+            // Log the handle for each collection
+            console.log("Collection Handle:", collection.handle);
+
+            return (
+              <DropdownMenuItem key={collection.id}>
+                 <Link href={`/shop?category=${collection.handle}`}>
+                  {collection.title}
+                </Link>
+              </DropdownMenuItem>
+            );
+          })}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

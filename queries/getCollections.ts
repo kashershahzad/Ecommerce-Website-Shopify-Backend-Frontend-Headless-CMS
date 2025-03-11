@@ -17,6 +17,26 @@ export const GET_COLLECTIONS = `
               node {
                 id
                 title
+                handle
+                description
+                images(first: 1) {
+                  edges {
+                    node {
+                      url
+                      altText
+                    }
+                  }
+                }
+                variants(first: 1) {
+                  edges {
+                    node {
+                      price {
+                        amount
+                        currencyCode
+                      }
+                    }
+                  }
+                }
               }
             }
           }
