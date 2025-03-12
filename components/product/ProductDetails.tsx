@@ -16,6 +16,12 @@ const ProductDetails = ({ product }: { product: Product }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState("");
 
+  // Function to get the description before the first period
+  const getTruncatedDescription = (description: string) => {
+    const periodIndex = description.indexOf('.');
+    return periodIndex !== -1 ? description.substring(0, periodIndex + 1) : description;
+  };
+
   return (
     <div className="space-y-2 mt-2">
       {/* Category */}
@@ -27,18 +33,20 @@ const ProductDetails = ({ product }: { product: Product }) => {
       </Link>
       {/* Product Name */}
       <h2 className="text-2xl md:text-3xl font-bold capitalize">
-        {product?.name}
+        {product?.title}
       </h2>
       {/* Rating and Review */}
-      <RatingReview
+      {/* <RatingReview
         rating={product?.rating || 0}
         review={product?.reviews.length || 0}
-      />
+      /> */}
       {/* Product Description */}
-      <ProductDescription description={product?.description as string} />
+      <p className="text-gray-700 font-bold text-xl mb-3">
+        {getTruncatedDescription(product?.description || "")}
+      </p>
 
       {/* product stock */}
-      <div>
+      {/* <div>
         {product.stockItems === 0 ? (
           <p className="text-lg  w-fit rounded-md text-muted-foreground">out of stock</p>
         ) : (
@@ -46,29 +54,29 @@ const ProductDetails = ({ product }: { product: Product }) => {
             Only <span className="text-lg text-black dark:text-white">({product.stockItems})</span> items in stock
           </p>
         )}
-      </div>
+      </div> */}
       {/* product colors */}
-      <ProductColorSelection
+      {/* <ProductColorSelection
         color={selectedColor}
         setColor={setSelectedColor}
         allColors={product.color!}
-      />
+      /> */}
 
       <div className="flex items-center gap-6">
         <div className="">
           {/* Original Price */}
-          <p className="text-muted-foreground line-through text-2xl">
+          {/* <p className="text-muted-foreground line-through text-2xl">
             ${product?.price}
-          </p>
+          </p> */}
           <div className="flex items-center gap-4">
             {/* Discounted Price */}
             <p className="text-3xl font-bold text-green-500 border-green-500 border py-2 px-6 rounded-lg">
-              ${calculateDiscount(product.price, product.discount)}
+            ${product?.price}
             </p>
-            <ProductQuantityChange
+            {/* <ProductQuantityChange
               quantity={quantity}
               setQuantity={setQuantity}
-            />
+            /> */}
           </div>
         </div>
       </div>
@@ -81,7 +89,8 @@ const ProductDetails = ({ product }: { product: Product }) => {
       {/* Separator */}
       <Separator className="!mt-4" />
       {/* Product Tab */}
-      <ProductTab aboutItem={product?.aboutItem!} reviews={product?.reviews} />
+      {/* <ProductTab aboutItem={product?.aboutItem!} reviews={product?.reviews} /> */}
+      <ProductDescription description={product?.description as string} />
     </div>
   );
 };

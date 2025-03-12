@@ -14,19 +14,23 @@ export const useShopifyProducts = (productId?: string) => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-       
+
         // Using the Storefront API client
         const { data } = await Shopifyclient.request(GET_PRODUCTS);
-        
+
         // Transform Shopify product data to match your Product type
         const transformedProducts: Product[] = data.products.edges.map((edge: any, index: number) => {
           const product = edge.node;
+
+          // Extract the numeric part of the Shopify Global ID
+          const id = product.id.split('/').pop(); // Extracts "14695216152940" from "gid://shopify/Product/14695216152940"
+
           const imageUrl = product.images.edges[0]?.node.url || "/placeholder-image.jpg";
           const price = parseFloat(product.variants.edges[0]?.node.price.amount) || 0;
           const discount = Math.floor(Math.random() * 30) + 5;
-         
+
           return {
-            id: index + 1,
+            id: id, // Use the extracted numeric ID
             title: product.title,
             category: "Shopify",
             description: product.description,
@@ -39,12 +43,12 @@ export const useShopifyProducts = (productId?: string) => {
             images: [imageUrl],
           };
         });
-        
+
         setProducts(transformedProducts);
-        
+
         // If productId is provided, find the specific product
         if (productId) {
-          const foundProduct = transformedProducts.find(p => p.id.toString() === productId);
+          const foundProduct = transformedProducts.find((p) => p.id === productId);
           setProduct(foundProduct || null);
         }
       } catch (err) {
@@ -54,9 +58,9 @@ export const useShopifyProducts = (productId?: string) => {
         setLoading(false);
       }
     };
-    
+
     fetchProducts();
   }, [productId]);
-  
+
   return { products, product, loading, error };
 };

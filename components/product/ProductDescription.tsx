@@ -1,23 +1,34 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ProductDescription = ({ description }: { description: string }) => {
-  const [showMore, setShowMore] = useState(false);
+  // Split the description into sentences using periods
+  const sentences = description.split(".").filter((sentence) => sentence.trim() !== "");
+
+  // Function to render the description as bullet points
+  const renderDescription = () => {
+    return (
+      <>
+      <Tabs defaultValue="aboutitem" className="w-full p-4 -mt-2 ">
+        <TabsList className="bg-transparent">
+          <TabsTrigger value="aboutitem">About This Item</TabsTrigger>
+        </TabsList>
+        </Tabs>
+        <ul className="list-disc list-inside space-y-2">
+          {sentences.map((sentence, index) => (
+            <li key={index} className="text-gray-700">
+              {sentence.trim()}.
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+  };
 
   return (
-    <div>
-      <p>
-        {showMore ? description : description?.slice(0, 200)}{" "}
-        {description?.length > 200 && !showMore && "..."}{" "}
-        {description?.length > 200 && (
-          <span
-            className="text-sky-500 m-2 cursor-pointer hover:underline"
-            onClick={() => setShowMore(!showMore)}
-          >
-            {showMore ? "show less" : "show more"}
-          </span>
-        )}
-      </p>
+    <div className="bg-white p-6 rounded-lg">
+      {renderDescription()}
     </div>
   );
 };

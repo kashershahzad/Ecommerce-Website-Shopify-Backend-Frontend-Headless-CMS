@@ -1,7 +1,7 @@
 // change or modify the types as your requirement
 
 export type Product = {
-  id: number;
+  id: string;
   name: string;
   title : string;
   category: string;

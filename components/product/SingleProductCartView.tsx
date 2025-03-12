@@ -58,7 +58,7 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
         <ProductOptions product={product} />
       </div>
       <div className="my-2 space-y-1 p-4">
-        <p
+        {/* <p
           onClick={(e) => {
             e.preventDefault();
             router.push(`shop?category=${category}`);
@@ -66,7 +66,7 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
           className="text-sm text-sky-500 font-light -mb-1 hover:opacity-60 "
         >
           {category}
-        </p>
+        </p> */}
         <h3 className="text-xl font-fold capitalize hover:text-green-500">
           {title.slice(0, 45)}
           {title.length > 45 && "..."}

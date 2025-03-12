@@ -98,9 +98,10 @@ const useShopifyCollections = (category?: string) => {
         const imageUrl = product.images.edges[0]?.node.url || "/placeholder-image.jpg";
         const priceAmount = product.variants?.edges[0]?.node.price?.amount || '0';
         const availableForSale = product.variants?.edges[0]?.node.availableForSale || false;
+        const id = product.id.split('/').pop(); 
         
         return {
-          id: product.id,
+          id: id,
           title: product.title,
           handle: product.handle,
           description: product.description,
