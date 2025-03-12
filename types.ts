@@ -15,7 +15,16 @@ export type Product = {
   color?: string[];
   stockItems: number;
   images: string[];
+  variantId: string;
+  quantity: number;
 };
+
+export interface CheckoutCreateInput {
+  lineItems: {
+    variantId: string;
+    quantity: number;
+  }[];
+}
 
 export interface Collection {
   id: string;
@@ -47,4 +56,5 @@ export type SearchParams = {
 export type CartItem = Product & {
   selectedColor: string;
   quantity: number;
+  variantId: string; 
 };

@@ -18,6 +18,7 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
     id,
     images,
     title,
+    variantId,
     price,
     rating,
     reviews,

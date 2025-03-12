@@ -41,9 +41,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
         review={product?.reviews.length || 0}
       /> */}
       {/* Product Description */}
-      <p className="text-gray-700 font-bold text-xl mb-3">
-        {getTruncatedDescription(product?.description || "")}
-      </p>
+
 
       {/* product stock */}
       {/* <div>
