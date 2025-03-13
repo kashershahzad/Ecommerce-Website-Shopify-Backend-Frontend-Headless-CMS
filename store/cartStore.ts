@@ -50,7 +50,7 @@ const useCartStore = create<CartState>((set) => {
 
     removeFromCart: (itemId: number): void => {
       set((state) => ({
-        cartItems: state.cartItems.filter((item) => item.id !== itemId),
+        cartItems: state.cartItems.filter((item) => item.id !== itemId.toString()),
       }));
       localStorage.setItem(STORAGE_KEY, JSON.stringify(useCartStore.getState().cartItems));
     },
@@ -58,7 +58,7 @@ const useCartStore = create<CartState>((set) => {
     updateQuantity: (itemId: number, newQuantity: number): void => {
       set((state) => ({
         cartItems: state.cartItems.map((item) =>
-          item.id === itemId ? { ...item, quantity: newQuantity } : item
+          item.id === itemId.toString() ? { ...item, quantity: newQuantity } : item
         ),
       }));
       localStorage.setItem(STORAGE_KEY, JSON.stringify(useCartStore.getState().cartItems));
