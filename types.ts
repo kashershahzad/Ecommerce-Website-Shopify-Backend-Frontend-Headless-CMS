@@ -3,7 +3,7 @@
 export type Product = {
   id: string;
   name: string;
-  title?: string; // Make optional
+  title : string;
   category: string;
   description: string;
   aboutItem: string[];
@@ -15,8 +15,8 @@ export type Product = {
   color?: string[];
   stockItems: number;
   images: string[];
-  variantId?: string; // Make optional
-  quantity?: number; // Make optional
+  variantId: string;
+  quantity: number;
 };
 
 export interface CheckoutCreateInput {

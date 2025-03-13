@@ -21,7 +21,7 @@ const ProductDetailsPage = () => {
         {/* Product Gallery */}
         <ProductGallery isInModal={false} images={product?.images!} />
         {/* product details */}
-        <ProductDetails product={product!} />
+        {/* <ProductDetails product={product!} /> */}
       </div>
     </div>
   );
