@@ -15,6 +15,8 @@ const SearchComponent = ({
     product.name.toLowerCase().includes(searchParams.query.toLowerCase())
   );
 
+  
+
 
   if (foundProducts.length === 0) {
     return <div className="text-xl font-medium flex flex-col items-center justify-center h-screen w-full">

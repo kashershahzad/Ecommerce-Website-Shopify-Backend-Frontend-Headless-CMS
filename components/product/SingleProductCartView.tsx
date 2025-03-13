@@ -17,13 +17,15 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
     discount,
     id,
     images,
-    title,
-    variantId,
+    title = product.name, // Use name as title if title is not provided
+    variantId = '', 
     price,
     rating,
     reviews,
     stockItems,
   } = product;
+
+  
 
   // Calculate discounted price
   const discountedPrice = calculateDiscount(price, discount || 0);

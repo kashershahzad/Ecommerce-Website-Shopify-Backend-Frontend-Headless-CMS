@@ -1,9 +1,9 @@
 // change or modify the types as your requirement
 
 export type Product = {
-  id: string;
+  id: string | number;
   name: string;
-  title : string;
+  title?: string; // Make optional
   category: string;
   description: string;
   aboutItem: string[];
@@ -15,8 +15,8 @@ export type Product = {
   color?: string[];
   stockItems: number;
   images: string[];
-  variantId: string;
-  quantity: number;
+  variantId?: string; // Make optional
+  quantity?: number; // Make optional
 };
 
 export interface CheckoutCreateInput {
