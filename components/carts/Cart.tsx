@@ -28,7 +28,7 @@ const Cart = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   const handleRovomeItemFromCart = (item: CartItem) => {
-    removeFromCart(item.id);
+    removeFromCart(parseInt(item.id));
     showToast("Item Removed from Cart", item?.images[0] as string, item.name);
   };
 
