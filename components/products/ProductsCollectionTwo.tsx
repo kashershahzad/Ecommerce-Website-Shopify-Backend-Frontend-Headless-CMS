@@ -22,7 +22,7 @@ const ProductsCollectionTwo = () => {
             Featured
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="new-arrivals" className="w-full">
+        {/* <TabsContent value="new-arrivals" className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
             {data?.slice(0, 8)?.map((product) => {
               return (
@@ -48,7 +48,7 @@ const ProductsCollectionTwo = () => {
               );
             })}
           </div>
-        </TabsContent>
+        </TabsContent> */}
       </Tabs>
     </section>
   );
