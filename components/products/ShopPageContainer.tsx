@@ -146,13 +146,13 @@ const ShopPageContainer = ({
   return (
     <div className="md:ml-4 p-2 md:p-0">
       {/* product status and filter options */}
-      <ProductViewChange
+      {/* <ProductViewChange
         listView={listView}
         setListView={setListView}
         totalPages={Math.ceil(filteredData.length / itemsPerPage)}
         itemPerPage={itemsPerPage}
         currentPage={currentPage}
-      />
+      /> */}
 
       {/* showing product list or cart view based on state */}
       {listView === true && (
@@ -180,13 +180,18 @@ const ShopPageContainer = ({
       )}
 
       {/* product pagination here */}
-      <Suspense fallback={<Loader />}>
-        <Pagination
-          totalPages={Math.ceil(filteredData.length / itemsPerPage)}
-          currentPage={currentPage}
-          pageName="page"
-        />
-      </Suspense>
+
+      {
+        filteredData.length > itemsPerPage && (
+          <Suspense fallback={<Loader />}>
+            <Pagination
+              totalPages={Math.ceil(filteredData.length / itemsPerPage)}
+              currentPage={currentPage}
+              pageName="page"
+            />
+          </Suspense>
+        )
+      }
     </div>
   );
 };
