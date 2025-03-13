@@ -56,6 +56,6 @@ export type SearchParams = {
 export type CartItem = Product & {
   selectedColor: string;
   quantity: number;
-  variantId: string; 
-  id: number;
+  variantId?: string; // Make optional
+  id: string; // Change to string
 };
