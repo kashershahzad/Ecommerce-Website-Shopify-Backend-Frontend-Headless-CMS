@@ -41,7 +41,7 @@ const useWishlistStore = create<WishlistState>((set, get) => {
     isInWishlist: (itemId: number) => {
       // Access state through the get function
       const { wishlistItems } = get();
-      return wishlistItems.some((item) => item.id === itemId);
+      return wishlistItems.some((item) => item.id === itemId.toString());
     },
   };
 });
