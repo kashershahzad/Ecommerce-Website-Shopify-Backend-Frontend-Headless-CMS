@@ -61,7 +61,7 @@ const CartItemsDetails = () => {
           <div className="flex items-center gap-2">
             <Button
               disabled={item?.quantity === 1}
-              onClick={() => updateQuantity(item?.id, item?.quantity - 1)}
+              onClick={() =>  updateQuantity(Number(item.id), item.quantity - 1)}
               size={"sm"}
               variant={"outline"}
             >
@@ -69,7 +69,7 @@ const CartItemsDetails = () => {
             </Button>
             <p>{item.quantity}</p>
             <Button
-              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+              onClick={() => updateQuantity(Number(item.id), item.quantity - 1)}
               size={"sm"}
               variant={"outline"}
             >
@@ -79,7 +79,7 @@ const CartItemsDetails = () => {
 
           <div>
             <Button
-              onClick={() => removeFromCart(item.id)}
+              onClick={() =>  updateQuantity(Number(item.id), item.quantity - 1)}
               variant={"destructive"}
             >
               <X />
