@@ -32,7 +32,7 @@ const useWishlistStore = create<WishlistState>((set, get) => {
     },
     removeFromWishlist: (itemId: number) => {
       set((state) => ({
-        wishlistItems: state.wishlistItems.filter((item) => item.id !== itemId),
+        wishlistItems: state.wishlistItems.filter((item) => item.id !== itemId.toString()),
       }));
       if (isLocalStorageAvailable) {
         localStorage.setItem('wishlist-items', JSON.stringify(get().wishlistItems));
