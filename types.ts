@@ -57,4 +57,5 @@ export type CartItem = Product & {
   selectedColor: string;
   quantity: number;
   variantId: string; 
+  id: number;
 };

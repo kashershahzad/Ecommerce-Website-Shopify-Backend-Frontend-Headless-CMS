@@ -119,7 +119,7 @@ const Cart = () => {
                   onClick={() => setShowSheet(false)}
                 >
                   <ViewCart />
-                  <CheckoutBtn />
+                  <CheckoutBtn cartItems={cartItems} />
                 </div>
               </div>
             </SheetDescription>
