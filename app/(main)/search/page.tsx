@@ -15,7 +15,7 @@ const SearchComponent = ({
     product.name.toLowerCase().includes(searchParams.query.toLowerCase())
   );
 
-  
+
 
 
   if (foundProducts.length === 0) {
@@ -28,18 +28,18 @@ const SearchComponent = ({
   return (
     <div className="max-w-screen-xl mx-auto p-4 md:p-8 space-y-2">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-      <BreadcrumbComponent links={["/shop"]} pageText={searchParams.query!} />
-      <p className=" capitalize">{foundProducts.length} results found for your search <span className="text-lg font-medium">
-      {searchParams.query}</span></p>
+        <BreadcrumbComponent links={["/shop"]} pageText={searchParams.query!} />
+        <p className=" capitalize">{foundProducts.length} results found for your search <span className="text-lg font-medium">
+          {searchParams.query}</span></p>
       </div>
       <div className="hidden lg:grid grid-cols-1 gap-6">
         {foundProducts.map((product) => (
-          <SingleProductListView key={product.id} product={product}/>
+          <SingleProductListView key={product.id} product={{ ...product, id: product.id.toString() }} />
         ))}
       </div>
       <div className="grid lg:hidden grid-cols-1 md:grid-cols-3 gap-6">
         {foundProducts.map((product) => (
-          <SingleProductCartView key={product.id} product={product}/>
+          <SingleProductCartView key={product.id} product={{ ...product, id: product.id.toString() }} />
         ))}
       </div>
     </div>

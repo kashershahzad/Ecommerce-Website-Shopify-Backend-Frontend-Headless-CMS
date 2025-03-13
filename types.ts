@@ -1,7 +1,7 @@
 // change or modify the types as your requirement
 
 export type Product = {
-  id: string | number;
+  id: string ;
   name: string;
   title?: string; // Make optional
   category: string;
