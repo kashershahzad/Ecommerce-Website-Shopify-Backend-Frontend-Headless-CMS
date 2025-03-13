@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import SingleProductCartView from "../product/SingleProductCartView";
 import client from '@/lib/contentfulClient';
 import { gql } from "@apollo/client";
-import { useShopifyProducts } from "@/hooks/useShopifyProducts";
+import useShopifyCollections from "@/hooks/useShopifyCollections";
 
 interface featuretitle {
   sys: {
@@ -33,8 +33,8 @@ const ProductsCollectionOne = () => {
   const [titleData, setTitleData] = useState<featuretitle[]>([]);
   const [error, setError] = useState<string | null>(null);
   
-  // Use the Shopify products hook
-  const { products, loading, error: shopifyError } = useShopifyProducts();
+  // Use the Shopify collections hook with the "feature-products" collection
+  const { products, loading, error: shopifyError } = useShopifyCollections("feature-products");
 
   React.useEffect(() => {
     fetchtitle()
