@@ -3,18 +3,21 @@ import React, { useEffect, useState } from "react";
 import CheckoutBtn from "../buttons/CheckoutBtn";
 import useCartStore from "@/store/cartStore";
 import Loader from "../others/Loader";
+import { CartItem } from "@/types";
 import { formatPrice } from "@/lib/formatPrice";
 
 const OrderSummaryForCart = () => {
 
   const [isMounted, setIsMounted] = useState(false);
+  // const { cartItems, getTotalItems, removeFromCart, getTotalPrice } =
+  //     useCartStore();
   
   useEffect(() => {
      setIsMounted(true)
   },[])
 
   
-  const {getTotalPrice,getTax,getShippingFee,getTotalAmount} = useCartStore()
+  const {getTotalPrice,getTax,getShippingFee,getTotalAmount ,  cartItems} = useCartStore()
 
   
   if(!isMounted){
@@ -47,9 +50,9 @@ const OrderSummaryForCart = () => {
           ${formatPrice(getTotalAmount())}
         </span>
       </div>
-      {/* <div className="w-fit mt-4">
-      <CheckoutBtn />
-      </div> */}
+      <div className="w-fit mt-4">
+      <CheckoutBtn cartItems={cartItems} />
+      </div>
     </div>
   );
 };
