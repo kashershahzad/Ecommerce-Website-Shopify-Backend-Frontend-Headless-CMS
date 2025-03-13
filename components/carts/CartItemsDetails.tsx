@@ -51,7 +51,7 @@ const CartItemsDetails = () => {
               className="w-16 h-16 rounded-lg object-cover"
             />
             <Link href={`/shop/${item.id}`} className="text-xl font-semibold text-gray-900 dark:text-white hover:opacity-60">
-              {item?.name?.slice(0, 30)}...
+              {item?.title?.slice(0, 30)}
             </Link>
           </div>
           <p className="border rounded-md border-green-400 py-1 px-2  text-xl text-green-500">
@@ -69,7 +69,7 @@ const CartItemsDetails = () => {
             </Button>
             <p>{item.quantity}</p>
             <Button
-              onClick={() => updateQuantity(Number(item.id), item.quantity - 1)}
+              onClick={() => updateQuantity(Number(item.id), item.quantity + 1)}
               size={"sm"}
               variant={"outline"}
             >
