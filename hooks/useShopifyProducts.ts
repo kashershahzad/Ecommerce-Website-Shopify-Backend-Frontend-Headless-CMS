@@ -29,6 +29,7 @@ export const useShopifyProducts = (productId?: string) => {
           const imageUrl = product.images.edges[0]?.node.url || "/placeholder-image.jpg";
           const price = parseFloat(product.variants.edges[0]?.node.price.amount) || 0;
           const discount = Math.floor(Math.random() * 30) + 5;
+          const quantityAvailable = product.variants.edges[0]?.node.quantityAvailable
 
           return {
             id: id, // Use the extracted numeric ID
@@ -41,7 +42,7 @@ export const useShopifyProducts = (productId?: string) => {
             discount: discount,
             rating: 4.5,
             reviews: [],
-            stockItems: 10,
+            stockItems: quantityAvailable,
             images: [imageUrl],
           };
         });

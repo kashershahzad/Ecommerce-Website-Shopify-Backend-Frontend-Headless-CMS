@@ -28,6 +28,7 @@ export const GET_PRODUCTS_BY_COLLECTION = `
                     currencyCode
                   }
                   availableForSale
+                  quantityAvailable
                 }
               }
             }

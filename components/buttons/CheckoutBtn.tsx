@@ -21,7 +21,7 @@ const CheckoutBtn: React.FC<CheckoutBtnProps> = ({ cartItems }) => {
       const lineItems: CartItem[] = cartItems.map(item => ({
         ...item, // Spread all properties of the item
         variantId: item.variantId, // Ensure variantId is included
-        quantity: item.quantity || 1, // Default quantity to 1 if not provided
+        quantity: item.stockItems, // Default quantity to 1 if not provided
       }));
 
       console.log('Creating checkout with line items:', lineItems);

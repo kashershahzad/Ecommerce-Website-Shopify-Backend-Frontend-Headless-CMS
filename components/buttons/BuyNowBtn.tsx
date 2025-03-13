@@ -25,7 +25,7 @@ const BuyNowBtn = ({product}:{product:CartItem}) => {
     // Create an array with just this product for the checkout
     const items = [{
       ...product,
-      quantity: product.quantity || 1,
+      quantity: product.stockItems,
       variantId: product.variantId
     }]
     

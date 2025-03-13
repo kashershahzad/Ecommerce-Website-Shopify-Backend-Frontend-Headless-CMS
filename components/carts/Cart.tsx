@@ -36,6 +36,8 @@ const Cart = () => {
     setIsMounted(true);
   }, []);
 
+  console.log("cartitm",cartItems)
+
   if (!isMounted) {
     return (
       <div className="relative p-2 hover:bg-gray-200 dark:hover:bg-gray-800 duration-200 rounded-md">
