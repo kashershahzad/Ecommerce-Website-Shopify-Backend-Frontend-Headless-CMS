@@ -127,15 +127,15 @@ const ShopPageContainer = ({
   if (filteredData.length === 0) {
     return (
       <div className="h-screen w-full flex items-center justify-center flex-col gap-4 text-xl mx-auto font-semibold space-y-4">
-        <ProductViewChange
+        {/* <ProductViewChange
           listView={listView}
           setListView={setListView}
           totalPages={Math.ceil(filteredData.length / itemsPerPage)}
           itemPerPage={itemsPerPage}
           currentPage={currentPage}
-        />
-        <p>Sorry no products found with your filter selection</p>
-        // eslint-disable-next-line react/no-unescaped-entities
+        /> */}
+        <p>Sorry no products Available</p>
+        {/* // eslint-disable-next-line react/no-unescaped-entities */}
         <p className="text-base text-gray-600">
           The category may not exist or the filters applied don't match any products.
         </p>

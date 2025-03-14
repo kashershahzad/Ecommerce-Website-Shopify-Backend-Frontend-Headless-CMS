@@ -26,7 +26,7 @@ const HeaderOne = () => {
       isActive: pathname === "/",
     },
     {
-      label: "Best Deals",
+      label: "Shop",
       link: "/shop",
       isActive: pathname.startsWith("/shop"),
     }
@@ -61,7 +61,7 @@ const HeaderOne = () => {
           {/* desktop search */}
           <div className="hidden lg:block">
             <Suspense fallback={<p>Loading...</p>}>
-              <SearchBox />
+              {/* <SearchBox /> */}
             </Suspense>
           </div>
           <div className="flex items-center gap-6 lg:gap-2 lg:-mt-1">

@@ -58,11 +58,11 @@ const ShopPageOne = ({ searchParams }: ShopPageOneProps) => {
 
   // Log for debugging
   useEffect(() => {
-    console.log("ShopPageOne - Category param:", searchParams.category);
-    console.log("ShopPageOne - Collection:", collection);
-    console.log("ShopPageOne - Final Products count:", finalProducts.length);
-    console.log("ShopPageOne - Final Products sample:", finalProducts.slice(0, 2));
-    console.log("ShopPageOne - Error:", errorMessage);
+    // console.log("ShopPageOne - Category param:", searchParams.category);
+    // console.log("ShopPageOne - Collection:", collection);
+    // console.log("ShopPageOne - Final Products count:", finalProducts.length);
+    // console.log("ShopPageOne - Final Products sample:", finalProducts.slice(0, 2));
+    // console.log("ShopPageOne - Error:", errorMessage);
   }, [collection, finalProducts, searchParams.category, errorMessage]);
 
   if (isLoading) return (

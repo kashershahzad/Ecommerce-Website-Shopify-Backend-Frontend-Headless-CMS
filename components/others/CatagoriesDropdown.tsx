@@ -23,7 +23,7 @@ const DropdownMenuComponent = () => {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center gap-2 font-medium px-4 py-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800">
-        Departments <ChevronDown />
+          Collections <ChevronDown />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="p-6 space-y-2">
           {collections.map((collection) => {
@@ -35,10 +35,13 @@ const DropdownMenuComponent = () => {
             // Log the handle for each collection
             console.log("Collection Handle:", collection.handle);
 
+            // Check if the collection handle is "mob" and change the title to "Smartphones"
+            const title = collection.handle === "mob" ? "Smartphones" : collection.title;
+
             return (
               <DropdownMenuItem key={collection.id}>
-                 <Link href={`/shop?category=${collection.handle}`}>
-                  {collection.title}
+                <Link href={`/shop?category=${collection.handle}`}>
+                  {title}
                 </Link>
               </DropdownMenuItem>
             );

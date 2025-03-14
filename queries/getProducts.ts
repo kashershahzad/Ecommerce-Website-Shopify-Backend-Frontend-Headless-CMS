@@ -1,7 +1,7 @@
 // queries/getproducts.ts
 export const GET_PRODUCTS = `
   query GetProducts {
-    products(first: 10) {
+    products(first: 20) {
       edges {
         node {
           id
