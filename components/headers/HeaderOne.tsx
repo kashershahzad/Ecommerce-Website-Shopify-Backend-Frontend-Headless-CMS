@@ -26,7 +26,7 @@ const HeaderOne = () => {
       isActive: pathname === "/",
     },
     {
-      label: "Shop",
+      label: "Best Deals",
       link: "/shop",
       isActive: pathname.startsWith("/shop"),
     }

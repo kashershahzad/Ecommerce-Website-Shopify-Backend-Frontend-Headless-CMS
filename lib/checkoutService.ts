@@ -6,7 +6,7 @@ export const createCheckout = async (items: CartItem[]) => {
     // Convert to Shopify's Global ID format for variants
     const lineItems = items.map(item => ({
       merchandiseId: item.variantId, 
-      quantity:  30,
+      quantity:  item.stockItems,
     }));
 
     console.log('Line Items:', lineItems);
