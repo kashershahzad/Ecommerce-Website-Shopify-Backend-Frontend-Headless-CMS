@@ -11,7 +11,11 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import useShopifyCollections from '@/hooks/useShopifyCollections';
 
-const DropdownMenuComponent = () => {
+interface CatagoriesDropdownProps {
+  title?: string;
+}
+
+const CatagoriesDropdown: React.FC<CatagoriesDropdownProps> = ({ title = "Collections" }) => {
   const { collections, loading, error } = useShopifyCollections();
 
   if (loading) return <div>Loading...</div>;
@@ -23,7 +27,7 @@ const DropdownMenuComponent = () => {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center gap-2 font-medium px-4 py-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800">
-          Collections <ChevronDown />
+          {title} <ChevronDown />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="p-6 space-y-2">
           {collections.map((collection) => {
@@ -36,12 +40,12 @@ const DropdownMenuComponent = () => {
             console.log("Collection Handle:", collection.handle);
 
             // Check if the collection handle is "mob" and change the title to "Smartphones"
-            const title = collection.handle === "mob" ? "Smartphones" : collection.title;
+            const collectionTitle = collection.handle === "mob" ? "Smartphones" : collection.title;
 
             return (
               <DropdownMenuItem key={collection.id}>
                 <Link href={`/shop?category=${collection.handle}`}>
-                  {title}
+                  {collectionTitle}
                 </Link>
               </DropdownMenuItem>
             );
@@ -52,4 +56,4 @@ const DropdownMenuComponent = () => {
   );
 };
 
-export default DropdownMenuComponent;
+export default CatagoriesDropdown;
