@@ -68,7 +68,7 @@ const ProductsCollectionOne = () => {
       <Tabs defaultValue="top-rated" className="w-full space-y-8 mx-0">
         <div className="flex items-center flex-col md:flex-row justify-between gap-2 flex-wrap w-full">
           <h2 className="text-3xl md:text-5xl font-semibold border-l-4 border-l-rose-500 p-2">
-            {titleData[0]?.title || "Featured Products"}
+            {titleData[0]?.title}
           </h2>
         </div>
         <TabsContent value="top-rated" className="w-full">
