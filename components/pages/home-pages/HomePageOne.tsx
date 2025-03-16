@@ -13,9 +13,9 @@ const HomePageOne = () => {
   return (
     <section className="overflow-hidden">
       <HeroBannerOne />
-      {/* <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader />}>
         <CategoriesCollection />
-      </Suspense> */}
+      </Suspense>
       <ProductsCollectionOne />
       <BenefitsSection textCenter={false} />
       <BannerOne />
