@@ -136,9 +136,9 @@ const HeaderOne = () => {
         </ul>
         <div className="flex items-center gap-6">
           {/* mobile search option */}
-          <div className="lg:hidden text-center">
+          {/* <div className="lg:hidden text-center">
             <Search size={25} onClick={openModal} />
-          </div>
+          </div> */}
           {/* desktop search */}
           <div className="hidden lg:block">
             <Suspense fallback={<p>Loading...</p>}>
