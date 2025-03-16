@@ -49,9 +49,6 @@ const CategoriesCollection = () => {
                     className="object-contain rounded-md"
                   />
                   <div className="flex items-center flex-col">
-                    {/* <p className="bg-rose-600 p-1 text-sm text-white whitespace-nowrap w-fit">
-                      {product.discount}% off
-                    </p> */}
                     <Link
                       href={`/shop/${product.id}`}
                       onClick={(e) => e.stopPropagation()}
