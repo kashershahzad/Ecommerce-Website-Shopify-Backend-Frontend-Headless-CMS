@@ -59,23 +59,23 @@ const ProductQuickViewModal = () => {
                 <ProductGallery isInModal={true} images={product.images} />
                 <div className="space-y-2">
                   {/* Category */}
-                  <small className="bg-lime-500 py-1 px-4 rounded-full w-fit">
+                  {/* <small className="bg-lime-500 py-1 px-4 rounded-full w-fit">
                     {product.category}
-                  </small>
+                  </small> */}
                   {/* Product Name */}
                   <h2 className="text-2xl md:text-3xl font-bold capitalize">
                     {product.name}
                   </h2>
                   {/* Rating and Review */}
-                  <RatingReview
+                  {/* <RatingReview
                     rating={product.rating || 0}
                     review={product.reviews.length || 0}
-                  />
+                  /> */}
                   {/* Product Description */}
                   <ProductDescription description={product.description} />
 
                   {/* product stock */}
-                  <div className="">
+                  {/* <div className="">
                     {product.stockItems === 0 ? (
                       <p className="text-lg w-fit rounded-md">
                         out of stock
@@ -85,30 +85,30 @@ const ProductQuickViewModal = () => {
                         Only {product.stockItems} items in stock
                       </p>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* product colors */}
-                  <ProductColorSelection
+                  {/* <ProductColorSelection
                     allColors={product.color!}
                     color={selectedColor}
                     setColor={setSelectedColor}
-                  />
+                  /> */}
 
                   <div className="flex items-center gap-6 !my-4">
                     <div className="">
                       {/* Original Price */}
-                      <p className="text-muted-foreground line-through">
+                      {/* <p className="text-muted-foreground line-through">
                         ${product.price}
-                      </p>
+                      </p> */}
                       {/* Discounted Price */}
                       <p className="text-3xl font-bold text-green-500">
-                        ${calculateDiscount(product.price, product.discount)}
+                      ${product.price}
                       </p>
                     </div>
-                    <ProductQuantityChange
+                    {/* <ProductQuantityChange
                       quantity={quantity}
                       setQuantity={setQuantity}
-                    />
+                    /> */}
                   </div>
                   <div
                     className="flex flex-col md:flex-row items-center gap-2"
@@ -123,10 +123,10 @@ const ProductQuickViewModal = () => {
                       product={{ ...product, quantity, selectedColor }}
                     />
                   </div>
-                  <ProductTab
+                  {/* <ProductTab
                     aboutItem={product?.aboutItem!}
                     reviews={product.reviews}
-                  />
+                  /> */}
                 </div>
               </div>
             )}

@@ -30,12 +30,13 @@ export const useShopifyProducts = (productId?: string) => {
           const price = parseFloat(product.variants.edges[0]?.node.price.amount) || 0;
           const discount = Math.floor(Math.random() * 30) + 5;
           const quantityAvailable = product.variants.edges[0]?.node.quantityAvailable
+          const collection = product.collections.edges[0]?.node.title || "Uncategorized";
 
           return {
             id: id, // Use the extracted numeric ID
             variantId: variantId, // Include the variant ID
             title: product.title,
-            category: "Shopify",
+            category: collection,
             description: product.description,
             aboutItem: [product.description.substring(0, 100)],
             price: price,

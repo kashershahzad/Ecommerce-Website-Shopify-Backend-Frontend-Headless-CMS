@@ -25,12 +25,12 @@ const ProductDetails = ({ product }: { product: Product }) => {
   return (
     <div className="space-y-2 mt-2">
       {/* Category */}
-      <Link
+      {/* <Link
         href={`/shop?category=${product.category}`}
         className="bg-lime-500 py-1 px-4 rounded-full w-fit"
       >
         {product?.category}
-      </Link>
+      </Link> */}
       {/* Product Name */}
       <h2 className="text-2xl md:text-3xl font-bold capitalize">
         {product?.title}

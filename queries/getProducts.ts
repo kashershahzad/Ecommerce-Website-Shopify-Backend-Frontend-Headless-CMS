@@ -35,7 +35,7 @@ export const GET_PRODUCTS = `
               }
             }
           }
-          collections(first: 1) {
+          collections(first: 10) {
             edges {
               node {
                 title

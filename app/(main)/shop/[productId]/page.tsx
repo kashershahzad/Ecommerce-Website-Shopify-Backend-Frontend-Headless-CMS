@@ -8,30 +8,25 @@ import ProductDetails from "@/components/product/ProductDetails";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 import { Product } from "@/types";
 
-
 interface ProductIdPageProps {
   params: { productId: string };
 }
 
 const ProductIdPage = ({ params }: ProductIdPageProps) => {
   // Use your Shopify hook to get the product data
-  const { product, loading, error } = useShopifyProducts(params.productId);
+  const { product, products, loading, error } = useShopifyProducts(params.productId);
   console.log("Products loaded: ", product);
   
-  // You might also need to fetch related products from Shopify
+  // State for related products
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   
   useEffect(() => {
-    // If you want to implement related products, you'll need to define this function
-    // or modify the approach
     if (product?.category) {
-      // For now, let's just set an empty array
-      setRelatedProducts([]);
-      
-      // If you have a real implementation, uncomment this:
-      // fetchRelatedProducts(product.category).then(setRelatedProducts);
+      // Filter products by the current product's category
+      const filteredProducts = products.filter(p => p.category === product.category && p.id !== product.id);
+      setRelatedProducts(filteredProducts);
     }
-  }, [product]);
+  }, [product, products]);
 
   // Show loading state
   if (loading) return <div>Loading...</div>;
