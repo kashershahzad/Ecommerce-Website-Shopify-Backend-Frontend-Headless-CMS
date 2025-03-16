@@ -25,9 +25,11 @@ import { ThemeToggle } from "../theme/ThemeToggle";
 import { Separator } from "../ui/separator";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import useShopifyCollections from "@/hooks/useShopifyCollections";
 
 const MobileHeader = () => {
   const pathname = usePathname();
+  const { collections, loading: collectionsLoading, error: collectionsError } = useShopifyCollections();
 
   const userLinks = [
     {
@@ -68,13 +70,7 @@ const MobileHeader = () => {
       label: "Shop",
       icon: <Store />,
       isActive: pathname.includes("/shop"),
-    },
-    {
-      link: "/blog",
-      label: "Blogs",
-      icon: <Text />,
-      isActive: pathname.includes("/blog"),
-    },
+    }
   ];
 
   return (
@@ -102,31 +98,26 @@ const MobileHeader = () => {
                   </Link>
                 ))}
                 <Separator className="!my-2" />
-                {/* theme toggle option here */}
-                <div className="flex items-center gap-2">
-                  <ThemeToggle />
-                  <p>Change Theme</p>
-                </div>
-                <Separator className="!my-2" />
+                {/* Shopify Collections */}
+                <ul className="space-y-1 text-start">
+                  {collections.map((collection) => {
+                    if (collection.handle === "feature-products") return null;
 
-                {/* user retated options here */}
-                {userLinks.map((link) => (
-                  <Link
-                    key={link.link}
-                    href={link.link}
-                    className={cn(
-                      "flex items-center gap-2 p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800",
-                      link.isActive && "bg-gray-200  dark:bg-gray-800"
-                    )}
-                  >
-                    {link.icon} {link.label}
-                  </Link>
-                ))}
-                <Separator className="!my-2" />
-                <button className="flex items-start justify-start gap-2 p-2 bg-transparent hover:opacity-50">
-                  <LogOut />
-                  Logout
-                </button>
+                    const collectionTitle =
+                      collection.handle === "mob" ? "Smartphones" : collection.title;
+
+                    return (
+                      <li key={collection.id}>
+                        <Link
+                          href={`/shop?category=${collection.handle}`}
+                          className="block  text-lg p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-md"
+                        >
+                          {collectionTitle}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
               </ul>
             </SheetDescription>
           </SheetHeader>
