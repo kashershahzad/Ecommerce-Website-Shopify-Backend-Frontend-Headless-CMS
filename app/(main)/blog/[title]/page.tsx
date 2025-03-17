@@ -1,87 +1,133 @@
+'use client'
+import { useState, useEffect } from "react";
 import BreadcrumbComponent from "@/components/others/Breadcrumb";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { blogPosts } from "@/data/blog/blogData";
 import Image from "next/image";
 import React from "react";
+import client from '@/lib/contentfulClient';
+import { gql } from '@apollo/client';
 import PopularPosts from "@/components/blog/PopularPosts";
-import AboutMe from "@/components/blog/AboutMe";
-import NewsLetterTwo from "@/components/newsLetter/NewsLetterTwo";
-import CommentSection from "@/components/blog/CommentSection";
+
+interface BlogContent {
+  type: string;
+  text?: string;
+  src?: string;
+  alt?: string;
+}
+
+interface Blog {
+  sys: {
+    id: string;
+  };
+  title: string;
+  decscription: string;
+  img: {
+    url: string;
+  };
+  img2?: {
+    url: string;
+  };
+}
+
+// Update the query to fetch blog by title
+const GET_BLOG_BY_TITLE = gql`
+  query GetBlogByTitle($title: String!) {
+    blogsCollection(where: { title: $title }, limit: 1) {
+      items {
+        sys {
+          id
+        }
+        title
+        decscription
+        img {
+          url
+        }
+        img2 {
+          url
+        }
+      }
+    }
+  }
+`;
 
 const BlogTitlePage = ({ params }: { params: { title: string } }) => {
+  const [blog, setBlog] = useState<Blog | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // get data from server based on the params 
-
-  const title = params.title.split("%20").join(" ");
-  const blog = blogPosts.find((item) => item.title === title);
-
-  const renderContent = () => {
-    return blog?.content.map((item, index) => {
-      if (item.type === "text") {
-        // Render text content as separate paragraphs
-        return (
-          <p key={index} className="text-xl leading-9">
-            {item.text}
-          </p>
-        );
-      } else if (item.type === "image") {
-        // Render images with flexible positioning
-        return (
-          <div key={index} className="relative w-full h-[30rem] mb-8">
-            <Image
-              className="rounded-md object-contain"
-              src={item.src || ''}
-              alt={item.alt || 'image'}
-              layout="fill"
-            />
-          </div>
-        );
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        // Get the blog title from the URL parameter
+        const blogTitle = decodeURIComponent(params.title);
+        
+        const { data } = await client.query({
+          query: GET_BLOG_BY_TITLE,
+          variables: { title: blogTitle }
+        });
+        
+        // Check if we got any results
+        if (data.blogsCollection?.items && data.blogsCollection.items.length > 0) {
+          setBlog(data.blogsCollection.items[0]);
+        } else {
+          console.error('Blog not found');
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching blog data:', error);
+        setLoading(false);
       }
-    });
+    };
+
+    fetchBlogData();
+  }, [params.title]);
+
+  const formatDescription = (description: string, img2Url?: string) => {
+    let formattedDescription = description;
+
+    // Insert img2 before .1 if img2Url is provided
+    if (img2Url) {
+      formattedDescription = formattedDescription.replace('.1', `<img src="${img2Url}" alt="img2" /><br/>1`);
+    }
+
+    // Ensure numbers are followed by a newline
+    formattedDescription = formattedDescription.replace(/(\d+\.)/g, '<br/><br/>$1');
+
+    return formattedDescription;
   };
+
+  if (loading) {
+    return <div className="flex justify-center items-center min-h-[50vh]">Loading...</div>;
+  }
+
+  if (!blog) {
+    return <div className="flex justify-center items-center min-h-[50vh]">Blog post not found</div>;
+  }
 
   return (
     <section>
       <div className="max-w-screen-xl mx-auto p-4 md:p-12">
         <div className="py-2">
-        <BreadcrumbComponent
-          links={["/blog"]}
-          pageText={blog?.title as string}
-        />
+          <BreadcrumbComponent
+            links={["/blog"]}
+            pageText={blog.title}
+          />
         </div>
-        {/* blog details  */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
+        {/* blog details */}
+        <div className="gap-4 w-full">
           <div className="space-y-4 lg:col-span-2">
             {/* Blog Title */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold capitalize">
-                {blog?.title}
+                {blog.title}
               </h2>
-              <div className="text-sm md:text-lg flex items-center gap-2 mt-2 text-blue-500">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>Pic</AvatarFallback>
-                </Avatar>{" "}
-                {blog?.author}
-              </div>
             </div>
             <div className="relative w-full h-[30rem]">
-            <Image src={blog?.image!} alt={blog?.title!} fill className="rounded-md object-contain" />
+              <Image src={blog.img.url} alt={blog.title} fill className="rounded-md object-contain" />
             </div>
-            {/* Render Content Dynamically */}
-            {renderContent()}
-          </div>
-          <div className="lg:col-span-1 space-y-4">
-            <PopularPosts />
-            <AboutMe />
+            <div className="space-y-6 px-24">
+              <div dangerouslySetInnerHTML={{ __html: formatDescription(blog.decscription, blog.img2?.url) }} />
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <CommentSection />
-      </div>
-      <div>
-        <NewsLetterTwo />
       </div>
     </section>
   );
