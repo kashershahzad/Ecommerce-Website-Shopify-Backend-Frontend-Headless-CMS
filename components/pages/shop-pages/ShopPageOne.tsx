@@ -25,10 +25,8 @@ const ShopPageOne = ({ searchParams }: ShopPageOneProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Use the collection hook
   const { collection, products: collectionProducts, loading: collectionLoading, error: collectionError } = useShopifyCollections(searchParams.category);
-  
-  // Use the products hook
+
   const { products: allProducts, loading: productsLoading, error: productsError } = useShopifyProducts();
 
   useEffect(() => {
@@ -46,7 +44,6 @@ const ShopPageOne = ({ searchParams }: ShopPageOneProps) => {
       return;
     }
 
-    // If no collection is found, use all products
     if (!searchParams.category || searchParams.category.length === 0) {
       setFinalProducts(allProducts);
     } else {
@@ -56,13 +53,7 @@ const ShopPageOne = ({ searchParams }: ShopPageOneProps) => {
     setIsLoading(false);
   }, [collection, collectionProducts, collectionLoading, collectionError, allProducts, productsLoading, productsError]);
 
-  // Log for debugging
   useEffect(() => {
-    // console.log("ShopPageOne - Category param:", searchParams.category);
-    // console.log("ShopPageOne - Collection:", collection);
-    // console.log("ShopPageOne - Final Products count:", finalProducts.length);
-    // console.log("ShopPageOne - Final Products sample:", finalProducts.slice(0, 2));
-    // console.log("ShopPageOne - Error:", errorMessage);
   }, [collection, finalProducts, searchParams.category, errorMessage]);
 
   if (isLoading) return (

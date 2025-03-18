@@ -4,9 +4,6 @@ import React from "react";
 
 const BannerTwo = () => {
 
-
-  // get latest banner data from server and show here
-
   return (
     <section className="bg-gradient-to-b bg-gray-600 to-gray-200 dark:bg-gray-900 ">
       <div className="relative max-w-screen-xl mx-auto p-4 md:p-8 overflow-hidden flex flex-col-reverse lg:block">

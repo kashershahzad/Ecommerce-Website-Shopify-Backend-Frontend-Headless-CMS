@@ -18,7 +18,6 @@ import CatagoriesDropdown from '../others/CatagoriesDropdown';
 import client from '@/lib/contentfulClient';
 import { gql } from "@apollo/client";
 
-// Define the type for your header data
 interface HeaderData {
   title: string;
   item1: string; 
@@ -33,7 +32,6 @@ const HeaderOne = () => {
   const pathname = usePathname();
   const { openModal } = useMobileSearchModal();
   
-  // Define the GraphQL query correctly
   const GET_HEADER_DATA = gql`
     query getHeaderData {
       headerCollection {
@@ -50,7 +48,6 @@ const HeaderOne = () => {
     }
   `;
   
-  // Fix the fetchHeaderData function with proper types
   const fetchHeaderData = async (): Promise<HeaderData[]> => {
     try {
       const { data } = await client.query<{ headerCollection: { items: HeaderData[] } }>({
@@ -63,7 +60,6 @@ const HeaderOne = () => {
     }
   };
 
-  // Initialize state with empty array
   const [headerData, setHeaderData] = React.useState<HeaderData[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
 
@@ -80,10 +76,8 @@ const HeaderOne = () => {
       });
   }, []);
 
-  // Get the first item from headerData, or use a default if not available
   const headerItem = headerData.length > 0 ? headerData[0] : null;
 
-  // Dynamic links based on headerData
   const links = headerItem ? [
     {
       label: headerItem.item1,

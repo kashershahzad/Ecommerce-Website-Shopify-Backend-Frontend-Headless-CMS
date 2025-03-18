@@ -13,27 +13,22 @@ interface ProductIdPageProps {
 }
 
 const ProductIdPage = ({ params }: ProductIdPageProps) => {
-  // Use your Shopify hook to get the product data
   const { product, products, loading, error } = useShopifyProducts(params.productId);
-  console.log("Products loaded: ", product);
+  // console.log("Products loaded: ", product);
   
-  // State for related products
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   
   useEffect(() => {
     if (product?.category) {
-      // Filter products by the current product's category
       const filteredProducts = products.filter(p => p.category === product.category && p.id !== product.id);
       setRelatedProducts(filteredProducts);
     }
   }, [product, products]);
 
-  // Show loading state
   if (loading) return <div>Loading...</div>;
-  // Show error state
+
   if (error) return <div>Error loading product</div>;
   
-  // Show product not found
   if (!product) return <div>Product not found</div>;
 
   return (

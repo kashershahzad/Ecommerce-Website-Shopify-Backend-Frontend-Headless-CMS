@@ -20,7 +20,6 @@ interface ShopPageTwoProps {
 const ShopPageTwo = ({ searchParams }: ShopPageTwoProps) => {
   const { collection, products, loading, error } = useShopifyCollections(searchParams.category);
 
-  // Ensure products are passed to ShopPageContainer
   return (
     <section>
       <div className="p-10 w-full bg-gray-300 dark:bg-gray-800 text-4xl flex items-center justify-center gap-2">
@@ -31,7 +30,7 @@ const ShopPageTwo = ({ searchParams }: ShopPageTwoProps) => {
 
       <div className="p-4 lg:px-16">
         <ShopPageContainer 
-          products={products}  // Pass the products here
+          products={products} 
           gridColumn={4} 
           searchParams={searchParams} 
         />

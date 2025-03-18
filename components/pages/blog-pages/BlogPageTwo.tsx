@@ -7,12 +7,10 @@ import Link from "next/link";
 import React from "react";
 
 const BlogPageTwo = () => {
-  // Sample tags data
   const tags = ["Tech", "Gadgets", "Design", "Fashion", "Travel"];
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* Blogs Section */}
       <div className="grid grid-cols-1 gap-8">
         {blogPosts.map((post) => (
           <div

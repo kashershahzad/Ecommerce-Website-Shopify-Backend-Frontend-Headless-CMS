@@ -5,7 +5,6 @@ import React from "react";
 import SingleProductCartView from "../product/SingleProductCartView";
 
 const ProductsCollectionTwo = () => {
-  //get products data from server here based on the category or tab value
   const data = productsData;
 
   return (

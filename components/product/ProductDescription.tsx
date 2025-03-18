@@ -3,10 +3,7 @@ import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ProductDescription = ({ description }: { description: string }) => {
-  // Split the description into sentences using periods
   const sentences = description.split(".").filter((sentence) => sentence.trim() !== "");
-
-  // Function to render the description as bullet points
   const renderDescription = () => {
     return (
       <>

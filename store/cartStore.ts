@@ -78,24 +78,20 @@ const useCartStore = create<CartState>((set) => {
         .getState()
         .cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-      // Apply coupon code discount if available
       const couponCode = useCartStore.getState().couponCode;
       if (couponCode === "YOUR_COUPON_CODE") {
-        // Example: Apply 10% discount
-        totalPrice *= 0.9; // 10% discount
+        totalPrice *= 0.9; 
       }
 
       return totalPrice;
     },
 
     getTax: (): number => {
-      // Calculate tax based on the total price (Example: 10% tax)
-      return useCartStore.getState().getTotalPrice() * 0.1; // 10% tax
+      return useCartStore.getState().getTotalPrice() * 0.1; 
     },
     
     getShippingFee: (): number => {
-      // Calculate shipping fee based on the total price (Example: $5 flat rate)
-      return 5; // $5 flat rate
+      return 5; 
     },
 
     getTotalAmount: (): number => {

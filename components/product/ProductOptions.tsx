@@ -35,14 +35,6 @@ const ProductOptions = ({ product }: { product: Product }) => {
     showToast("Item Added To Cart", images[0], name);
   };
 
-  // const handleAddToWishList = () => {
-  //   if (isInWishlist(product.id)) {
-  //     showToast("Item Added To Wishlist", images[0], name);
-  //   } else {
-  //     addToWishlist(product);
-  //     showToast("Item Already Exist In Wishlist", images[0], name);
-  //   }
-  // };
 
   const handleProductQuickView = () => {
     openModal(product);
@@ -54,19 +46,6 @@ const ProductOptions = ({ product }: { product: Product }) => {
       onClick={(e) => e.preventDefault()}
     >
       <TooltipProvider delayDuration={0}>
-        {/* <Tooltip>
-          <TooltipTrigger>
-            <div
-              onClick={handleAddToWishList}
-              className="p-2 rounded-lg mr-1 bg-slate-900 text-white"
-            >
-              <Heart />
-            </div>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Add To Wishlist</p>
-          </TooltipContent>
-        </Tooltip> */}
         <Tooltip>
           <TooltipTrigger>
             <div

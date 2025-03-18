@@ -23,14 +23,11 @@ const OrderSummaryForCheckout = () => {
 
   return (
     <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
-      {/* ordered items details */}
       <div>
         <h2 className="text-lg font-semibold my-2 lg:p-4">Order Items</h2>
         <CartItemsDetails />
         <Separator className="dark:bg-white/50 mb-2" />
       </div>
-
-      {/* order summary for order place */}
       <div className="lg:px-4">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
           Order Summary

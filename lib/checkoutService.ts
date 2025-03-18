@@ -3,7 +3,6 @@ import { CartItem } from '@/types';
 
 export const createCheckout = async (items: CartItem[]) => {
   try {
-    // Convert to Shopify's Global ID format for variants
     const lineItems = items.map(item => ({
       merchandiseId: item.variantId, 
       quantity:  item.stockItems,
@@ -19,7 +18,6 @@ export const createCheckout = async (items: CartItem[]) => {
       throw new Error('Cart is empty, cannot create checkout');
     }
 
-    // Step 1: Create a cart using the Cart API
     const CART_CREATE_MUTATION = `
       mutation cartCreate($input: CartInput!) {
         cartCreate(input: $input) {
@@ -44,13 +42,11 @@ export const createCheckout = async (items: CartItem[]) => {
 
     console.log('Cart Creation Response:', { cartData, cartErrors });
 
-    // Handle GraphQL API-level errors
     if (cartErrors) {
       console.error('GraphQL Errors:', cartErrors);
       throw new Error('Failed to create cart due to API error');
     }
 
-    // Handle Shopify-specific cart errors
     const cartUserErrors = cartData.cartCreate.userErrors;
     if (cartUserErrors.length > 0) {
       console.error('Shopify Cart Errors:', cartUserErrors);
@@ -61,7 +57,6 @@ export const createCheckout = async (items: CartItem[]) => {
       throw new Error('Missing checkout URL');
     }
 
-    // Return the cart object with the checkout URL
     return cartData.cartCreate.cart;
   } catch (error) {
     console.error('Checkout Creation Error:', error);

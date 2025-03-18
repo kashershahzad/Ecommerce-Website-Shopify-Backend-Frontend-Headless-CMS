@@ -28,7 +28,6 @@ interface Blog {
   };
 }
 
-// Update the query to fetch blog by title
 const GET_BLOG_BY_TITLE = gql`
   query GetBlogByTitle($title: String!) {
     blogsCollection(where: { title: $title }, limit: 1) {
@@ -56,15 +55,13 @@ const BlogTitlePage = ({ params }: { params: { title: string } }) => {
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        // Get the blog title from the URL parameter
         const blogTitle = decodeURIComponent(params.title);
         
         const { data } = await client.query({
           query: GET_BLOG_BY_TITLE,
           variables: { title: blogTitle }
         });
-        
-        // Check if we got any results
+
         if (data.blogsCollection?.items && data.blogsCollection.items.length > 0) {
           setBlog(data.blogsCollection.items[0]);
         } else {
@@ -83,12 +80,10 @@ const BlogTitlePage = ({ params }: { params: { title: string } }) => {
   const formatDescription = (description: string, img2Url?: string) => {
     let formattedDescription = description;
 
-    // Insert img2 before .1 if img2Url is provided
     if (img2Url) {
       formattedDescription = formattedDescription.replace('.1', `<img src="${img2Url}" alt="img2" /><br/>1`);
     }
 
-    // Ensure numbers are followed by a newline
     formattedDescription = formattedDescription.replace(/(\d+\.)/g, '<br/><br/>$1');
 
     return formattedDescription;
@@ -111,10 +106,8 @@ const BlogTitlePage = ({ params }: { params: { title: string } }) => {
             pageText={blog.title}
           />
         </div>
-        {/* blog details */}
         <div className="gap-4 w-full">
           <div className="space-y-4 lg:col-span-2">
-            {/* Blog Title */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold capitalize">
                 {blog.title}

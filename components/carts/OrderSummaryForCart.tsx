@@ -9,9 +9,7 @@ import { formatPrice } from "@/lib/formatPrice";
 const OrderSummaryForCart = () => {
 
   const [isMounted, setIsMounted] = useState(false);
-  // const { cartItems, getTotalItems, removeFromCart, getTotalPrice } =
-  //     useCartStore();
-  
+
   useEffect(() => {
      setIsMounted(true)
   },[])

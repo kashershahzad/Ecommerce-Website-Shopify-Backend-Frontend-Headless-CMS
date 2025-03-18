@@ -58,19 +58,8 @@ const WishlistPage = () => {
                 </p>
                 <div className="flex justify-between items-center">
                   <p className="text-green-500 font-semibold text-lg">${formatPrice(cart.price)}</p>
-                  {/* <button
-                    className="text-red-500 hover:text-red-600 focus:outline-none"
-                    onClick={() => removeFromWishlist(cart.id)}
-                  >
-                    <X size={20} />
-                  </button> */}
                 </div>
               </div>
-              {/* <div className="p-4 flex items-center justify-between">
-                <AddToCartBtn
-                  product={{ ...cart, quantity: 1, selectedColor: "" }}
-                />
-              </div> */}
             </div>
           ))}
         </div>

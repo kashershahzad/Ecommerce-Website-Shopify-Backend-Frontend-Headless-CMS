@@ -28,13 +28,9 @@ const ShopPageContainer = ({
     Number(searchParams.page) || 1
   );
   const itemsPerPage = 6;
-
-  // Function to filter data based on search params
   const filterData = () => {
     console.log("Initial products for filtering:", products);
     let filteredProducts = [...products];
-
-    // Filter by category
     if (searchParams.category) {
       filteredProducts = filteredProducts.filter(
         (product) => {
@@ -44,8 +40,6 @@ const ShopPageContainer = ({
         }
       );
     }
-
-    // Filter by brand
     if (searchParams.brand) {
       filteredProducts = filteredProducts.filter(
         (product) => {
@@ -55,8 +49,6 @@ const ShopPageContainer = ({
         }
       );
     }
-
-    // Filter by color if product has color property
     if (searchParams.color && filteredProducts.some(p => p.color)) {
       filteredProducts = filteredProducts.filter((product) =>
         Array.isArray(product.color)
@@ -64,8 +56,6 @@ const ShopPageContainer = ({
           : false
       );
     }
-
-    // Filter by min and max price
     if (searchParams.min && searchParams.max) {
       const minPrice = parseFloat(searchParams.min);
       const maxPrice = parseFloat(searchParams.max);
@@ -83,7 +73,6 @@ const ShopPageContainer = ({
     return filteredProducts;
   };
 
-  // Update filtered data whenever search params change
   useEffect(() => {
     setLoading(true);
     console.log("Search params changed:", searchParams);
@@ -92,7 +81,7 @@ const ShopPageContainer = ({
     if (products.length > 0) {
       const filteredProducts = filterData();
       setFilteredData(filteredProducts);
-      setCurrentPage(Number(searchParams.page) || 1); // Reset pagination to first page when filters change
+      setCurrentPage(Number(searchParams.page) || 1); 
     } else {
       setFilteredData([]);
     }
@@ -100,12 +89,10 @@ const ShopPageContainer = ({
     setLoading(false);
   }, [searchParams, products]);
 
-  // change currentPage when searchparams page change
   useEffect(() => {
     setCurrentPage(Number(searchParams.page) || 1);
   }, [searchParams.page]);
 
-  // Update paginated data whenever filtered data or pagination settings change
   useEffect(() => {
     setLoading(true);
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -127,15 +114,7 @@ const ShopPageContainer = ({
   if (filteredData.length === 0) {
     return (
       <div className="h-screen w-full flex items-center justify-center flex-col gap-4 text-xl mx-auto font-semibold space-y-4">
-        {/* <ProductViewChange
-          listView={listView}
-          setListView={setListView}
-          totalPages={Math.ceil(filteredData.length / itemsPerPage)}
-          itemPerPage={itemsPerPage}
-          currentPage={currentPage}
-        /> */}
         <p>Sorry no products Available</p>
-        {/* // eslint-disable-next-line react/no-unescaped-entities */}
         <p className="text-base text-gray-600">
           The category may not exist or the filters applied don't match any products.
         </p>
@@ -145,16 +124,6 @@ const ShopPageContainer = ({
 
   return (
     <div className="md:ml-4 p-2 md:p-0">
-      {/* product status and filter options */}
-      {/* <ProductViewChange
-        listView={listView}
-        setListView={setListView}
-        totalPages={Math.ceil(filteredData.length / itemsPerPage)}
-        itemPerPage={itemsPerPage}
-        currentPage={currentPage}
-      /> */}
-
-      {/* showing product list or cart view based on state */}
       {listView === true && (
         <div className="max-w-screen-xl mx-auto overflow-hidden py-4 md:py-8 gap-4 lg:gap-6">
           {paginatedData.map((product) => {
@@ -178,9 +147,6 @@ const ShopPageContainer = ({
           ))}
         </div>
       )}
-
-      {/* product pagination here */}
-
       {
         filteredData.length > itemsPerPage && (
           <Suspense fallback={<Loader />}>
