@@ -17,7 +17,6 @@ import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from '@/lib/contentfulClient'
 
-// Define types for the banner data
 interface BannerImage {
   url: string;
 }
@@ -27,7 +26,7 @@ interface BannerData {
     id: string;
   };
   title: string;
-  decscription: string; // Fixed typo in field name
+  decscription: string;
   button: string;
   discountText: string;
   images: {
@@ -36,7 +35,6 @@ interface BannerData {
   link: string;
 }
 
-// GraphQL query corrected to match content model field names
 const GET_BANNER_DATA = gql`
   query GetBannerData {
     bannerdataCollection {
@@ -57,7 +55,6 @@ const GET_BANNER_DATA = gql`
   }
 `;
 
-// Fetch data on the client side
 const fetchBannerData = async (): Promise<BannerData[]> => {
   const { data } = await client.query<{ bannerdataCollection: { items: BannerData[] } }>({
     query: GET_BANNER_DATA,
@@ -72,9 +69,9 @@ const HeroBannerOne: React.FC = () => {
     fetchBannerData().then((data) => setBannerData(data));
   }, []);
 
-  if (!bannerData.length) {
-    return <div>Loading...</div>;
-  }
+  // if (!bannerData.length) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <section className="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 ">
@@ -127,7 +124,6 @@ const HeroBannerOne: React.FC = () => {
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  {/* main product image */}
                   <Image
                     className="bg-transparent rotate-6 relative z-50 object-contain"
                     src={data.images.url}
@@ -136,7 +132,6 @@ const HeroBannerOne: React.FC = () => {
                     alt="banner image"
                   />
                 </motion.div>
-                {/* Animated Sparkles */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}

@@ -32,8 +32,7 @@ const ProductsCollectionOne = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [titleData, setTitleData] = useState<featuretitle[]>([]);
   const [error, setError] = useState<string | null>(null);
-  
-  // Use the Shopify collections hook with the "feature-products" collection
+
   const { products, loading, error: shopifyError } = useShopifyCollections("feature-products");
 
   React.useEffect(() => {
@@ -59,9 +58,9 @@ const ProductsCollectionOne = () => {
     return <div>{error || shopifyError}</div>;
   }
 
-  if (loading) {
-    return <div className="text-center py-10">Loading products...</div>;
-  }
+  // if (loading) {
+  //   return <div className="text-center py-10">Loading products...</div>;
+  // }
 
   return (
     <section className="max-w-screen-xl mx-auto py-16 px-4 md:px-8 w-full">

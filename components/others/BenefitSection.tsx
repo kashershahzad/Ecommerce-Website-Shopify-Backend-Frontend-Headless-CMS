@@ -21,7 +21,6 @@ type LucideIcon = React.ComponentType<{
   size?: number | string;
   color?: string;
   className?: string;
-  // Add other props if needed
 }>;
 
 const GET_ADVANTAGE_TITLE = gql`
@@ -57,15 +56,13 @@ const BenefitsSection = ({ textCenter }: { textCenter: boolean }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch title data
         const titleResult = await client.query({
           query: GET_ADVANTAGE_TITLE
         });
         
         const titleData = titleResult.data.advantageSectionTitleCollection.items[0];
         setAdvantageTitle(titleData);
-        
-        // Fetch advantage items
+
         const itemsResult = await client.query({
           query: GET_ADVANTAGE_DATA
         });
@@ -82,22 +79,19 @@ const BenefitsSection = ({ textCenter }: { textCenter: boolean }) => {
     fetchData();
   }, []);
 
-  // Dynamic icon rendering function
   const renderIcon = (iconName: string) => {
-    // Check if the icon exists in Lucide Icons
     const IconComponent = LucideIcons[iconName as keyof typeof LucideIcons] as LucideIcon;
     
     if (IconComponent) {
       return <IconComponent size={48} className="text-blue-500" />;
     }
-    
-    // Fallback to a default icon if the specified one doesn't exist
+
     return <LucideIcons.HelpCircle size={48} className="text-blue-500" />;
   };
 
-  if (loading) {
-    return <div className="py-16 text-center">Loading advantages...</div>;
-  }
+  // if (loading) {
+  //   return <div className="py-16 text-center">Loading advantages...</div>;
+  // }
 
   return (
     <section className="py-16 bg-gray-100 dark:bg-gray-800">

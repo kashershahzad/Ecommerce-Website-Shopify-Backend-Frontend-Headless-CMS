@@ -23,6 +23,7 @@ const HomePageOne = () => {
       {/* <TestimonialsSection textCenter={false} /> */}
       <FrequentlyAskendQuestions />
       <LatestBlogPosts twoColunmHeader={true} />
+
       {/* <NewsLetterTwo /> */}
     </section>
   );

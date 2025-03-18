@@ -54,7 +54,7 @@ const FAQ_QUERY = gql`
 const FrequentlyAskedQuestions: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [faqs, setFaqs] = useState<FAQ[]>([]);
-    const [faqTitle, setFaqTitle] = useState<string>("FAQs"); // Default title
+    const [faqTitle, setFaqTitle] = useState<string>("FAQs"); 
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -62,8 +62,7 @@ const FrequentlyAskedQuestions: React.FC = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                
-                // Fetch FAQs
+
                 console.log("Fetching FAQs from Contentful...");
                 const faqResponse = await client.query<FaqQueryResponse>({
                     query: FAQ_QUERY
@@ -77,7 +76,6 @@ const FrequentlyAskedQuestions: React.FC = () => {
                     setError("No FAQ data found");
                 }
 
-                // Fetch FAQ Title
                 console.log("Fetching FAQ Title from Contentful...");
                 const titleResponse = await client.query<FaqTitleQueryResponse>({
                     query: FAQ_TITLE_QUERY
@@ -107,15 +105,15 @@ const FrequentlyAskedQuestions: React.FC = () => {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
-    if (loading) {
-        return (
-            <div className="w-full bg-white dark:bg-gray-900 py-16">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p className="text-gray-600 dark:text-gray-400">Loading FAQs...</p>
-                </div>
-            </div>
-        );
-    }
+    // if (loading) {
+    //     return (
+    //         <div className="w-full bg-white dark:bg-gray-900 py-16">
+    //             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    //                 <p className="text-gray-600 dark:text-gray-400">Loading FAQs...</p>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     if (error) {
         return (

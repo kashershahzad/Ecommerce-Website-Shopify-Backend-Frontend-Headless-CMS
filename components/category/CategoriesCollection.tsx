@@ -7,7 +7,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import useShopifyCollections from "@/hooks/useShopifyCollections";
 import Link from "next/link";
 
-// Define types for the collection and product
 interface Collection {
   handle: string;
   title: string;
@@ -15,7 +14,7 @@ interface Collection {
 
 interface Product {
   id: string;
-  title?: string; // Make title optional
+  title?: string;
   images: string[];
 }
 
@@ -35,15 +34,14 @@ const CategoriesCollection = () => {
     router.push(`shop?${params.toString()}`);
   };
 
-  if (loading) {
-    return <div className="text-center py-16">Loading collections...</div>;
-  }
+  // if (loading) {
+  //   return <div className="text-center py-16">Loading collections...</div>;
+  // }
 
   if (error) {
     return <div className="text-center py-16 text-red-500">Error loading collections: {error}</div>;
   }
 
-  // Filter out the "feature-products" collection
   const filteredCollections = collections.filter(collection => collection.handle !== "feature-products");
 
   return (
@@ -61,7 +59,6 @@ const CategoriesCollection = () => {
   );
 };
 
-// Separate component for each collection card
 const CollectionCard: React.FC<CollectionCardProps> = ({ collection, onCollectionClick }) => {
   const { products, loading } = useShopifyCollections(collection.handle);
 
@@ -84,7 +81,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection, onCollectio
             >
               <Image
                 src={product.images[0] || "/placeholder-image.jpg"}
-                alt={product.title || "Product image"} // Handle undefined title
+                alt={product.title || "Product image"}
                 width={100}
                 height={100}
                 className="object-contain rounded-md"
