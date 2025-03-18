@@ -102,9 +102,9 @@ const LatestBlogPosts = ({ twoColunmHeader }: { twoColunmHeader: boolean }) => {
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         {twoColunmHeader ? (
           <div className="flex flex-wrap items-center justify-center md:justify-between mb-12">
-            <h2 className="text-3xl md:text-5xl !text-center md:text-start font-bold text-gray-900 dark:text-white border-l-4 p-2 border-l-rose-500">
+            <p className="text-3xl md:text-5xl !text-center md:text-start font-bold text-gray-900 dark:text-white border-l-4 p-2 border-l-rose-500">
               {title ? title.title : "Loading..."}
-            </h2>
+            </p>
             {/* <Button variant={"outline"} className="hidden md:block" size={"sm"}>
               <Link href={"/blog"}>Read More</Link>
             </Button> */}
