@@ -36,7 +36,7 @@ const Cart = () => {
     setIsMounted(true);
   }, []);
 
-  console.log("cartitm",cartItems)
+  // console.log("cartitm",cartItems)
 
   if (!isMounted) {
     return (

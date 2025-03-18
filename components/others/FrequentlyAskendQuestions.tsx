@@ -63,12 +63,12 @@ const FrequentlyAskedQuestions: React.FC = () => {
             try {
                 setLoading(true);
 
-                console.log("Fetching FAQs from Contentful...");
+                // console.log("Fetching FAQs from Contentful...");
                 const faqResponse = await client.query<FaqQueryResponse>({
                     query: FAQ_QUERY
                 });
 
-                console.log("Contentful FAQ response:", faqResponse.data);
+                // console.log("Contentful FAQ response:", faqResponse.data);
 
                 if (faqResponse.data && faqResponse.data.faqCollection && faqResponse.data.faqCollection.items) {
                     setFaqs(faqResponse.data.faqCollection.items);
@@ -76,12 +76,12 @@ const FrequentlyAskedQuestions: React.FC = () => {
                     setError("No FAQ data found");
                 }
 
-                console.log("Fetching FAQ Title from Contentful...");
+                // console.log("Fetching FAQ Title from Contentful...");
                 const titleResponse = await client.query<FaqTitleQueryResponse>({
                     query: FAQ_TITLE_QUERY
                 });
 
-                console.log("Contentful Title response:", titleResponse.data);
+                // console.log("Contentful Title response:", titleResponse.data);
 
                 if (titleResponse.data && 
                     titleResponse.data.faqTitleCollection && 
@@ -92,7 +92,7 @@ const FrequentlyAskedQuestions: React.FC = () => {
                 
                 setLoading(false);
             } catch (err) {
-                console.error("Error fetching data:", err);
+                // console.error("Error fetching data:", err);
                 setError("Failed to load data. Check console for details.");
                 setLoading(false);
             }

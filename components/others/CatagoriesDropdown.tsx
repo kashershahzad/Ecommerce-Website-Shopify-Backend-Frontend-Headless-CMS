@@ -21,7 +21,7 @@ const CatagoriesDropdown: React.FC<CatagoriesDropdownProps> = ({ title = "Collec
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  console.log("Collections:", collections);
+  // console.log("Collections:", collections);
 
   return (
     <div>
@@ -31,15 +31,10 @@ const CatagoriesDropdown: React.FC<CatagoriesDropdownProps> = ({ title = "Collec
         </DropdownMenuTrigger>
         <DropdownMenuContent className="p-6 space-y-2">
           {collections.map((collection) => {
-            // Skip rendering if the collection handle is "feature-products"
             if (collection.handle === "feature-products") {
               return null;
             }
-
-            // Log the handle for each collection
-            console.log("Collection Handle:", collection.handle);
-
-            // Check if the collection handle is "mob" and change the title to "Smartphones"
+            // console.log("Collection Handle:", collection.handle);
             const collectionTitle = collection.handle === "mob" ? "Smartphones" : collection.title;
 
             return (

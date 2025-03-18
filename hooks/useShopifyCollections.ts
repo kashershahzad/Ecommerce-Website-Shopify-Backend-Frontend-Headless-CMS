@@ -47,22 +47,21 @@ const useShopifyCollections = (category?: string) => {
           if (selectedCollection) {
             setCollection(selectedCollection);
             const collectionProducts = await fetchProductsForCollection(selectedCollection.id);
-            console.log("Fetched products for selected collection:", collectionProducts);
+            // console.log("Fetched products for selected collection:", collectionProducts);
             setProducts(collectionProducts);
           } else {
             setError(`Collection with category "${category}" not found`);
           }
         } else {
-          // If no category is specified, fetch products from the first collection
           if (transformedCollections.length > 0) {
             setCollection(transformedCollections[0]);
             const collectionProducts = await fetchProductsForCollection(transformedCollections[0].id);
-            console.log("Fetched products for default collection:", collectionProducts);
+            // console.log("Fetched products for default collection:", collectionProducts);
             setProducts(collectionProducts);
           }
         }
       } catch (err) {
-        console.error("Error fetching Shopify collections:", err);
+        // console.error("Error fetching Shopify collections:", err);
         setError("Failed to fetch collections from Shopify");
       } finally {
         setLoading(false);
@@ -83,13 +82,13 @@ const useShopifyCollections = (category?: string) => {
       });
 
       if (!data.collection) {
-        console.error("Collection not found in response:", data);
+        // console.error("Collection not found in response:", data);
         setError("Collection not found");
         return [];
       }
 
       if (!data.collection.products || !data.collection.products.edges) {
-        console.error("No products found in collection:", data.collection);
+        // console.error("No products found in collection:", data.collection);
         return [];
       }
 
@@ -113,14 +112,14 @@ const useShopifyCollections = (category?: string) => {
           brand: product.vendor || '',
           color: [],
           size: [],
-          stockItems:quantityAvailable, // Assuming 10 items in stock if available
-          discount: 10, // Assuming a default discount of 10%
-          rating: 4.5, // Assuming a default rating
-          reviews: [], // Assuming no reviews initially
+          stockItems:quantityAvailable, 
+          discount: 10,
+          rating: 4.5,
+          reviews: [],
         };
       });
     } catch (err) {
-      console.error("Error fetching products for collection:", err);
+      // console.error("Error fetching products for collection:", err);
       setError("Failed to fetch products for collection");
       return [];
     }
