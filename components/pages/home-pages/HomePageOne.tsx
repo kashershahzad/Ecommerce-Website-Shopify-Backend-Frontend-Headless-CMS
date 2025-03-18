@@ -21,8 +21,8 @@ const HomePageOne = () => {
       <BenefitsSection textCenter={false} />
       <BannerOne />
       {/* <TestimonialsSection textCenter={false} /> */}
-      <LatestBlogPosts twoColunmHeader={true} />
       <FrequentlyAskendQuestions />
+      <LatestBlogPosts twoColunmHeader={true} />
       {/* <NewsLetterTwo /> */}
     </section>
   );

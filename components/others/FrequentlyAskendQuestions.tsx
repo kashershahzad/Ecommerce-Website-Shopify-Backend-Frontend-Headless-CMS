@@ -137,9 +137,6 @@ const FrequentlyAskedQuestions: React.FC = () => {
                     <p className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white border-l-4 p-2 border-l-rose-500">
                         {faqTitle}
                     </p>
-                    <p className="text-lg text-gray-600 dark:text-gray-400 mt-4 md:mt-0">
-                        Find answers to our most commonly asked questions
-                    </p>
                 </div>
 
                 {faqs.length === 0 ? (
